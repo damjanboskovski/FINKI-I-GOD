@@ -2,7 +2,7 @@
 #include <string.h>
 
 typedef struct Laptop{
-    char firm[100]; float size; int touch; int price;
+    char firm[100]; float size; int touch, price;
 } Laptop;
 
 typedef struct ITStore{
@@ -13,7 +13,7 @@ void print(ITStore *arr,int n){
     for(int i=0;i<n;i++){
         printf("%s %s\n",arr[i].store_Name,arr[i].location);
         for(int j=0;j<arr[i].num;j++){
-            if(arr[i].l[j].size - (int)arr[i].l[j].size == 0){
+            if(arr[i].l[j].size == (int)arr[i].l[j].size){
                 printf("%s %d %d\n",arr[i].l[j].firm, (int) arr[i].l[j].size, arr[i].l[j].price);
             }
             else printf("%s %.1f %d\n", arr[i].l[j].firm, arr[i].l[j].size, arr[i].l[j].price);

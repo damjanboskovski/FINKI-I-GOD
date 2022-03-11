@@ -37,7 +37,7 @@ class Voz{
 
         friend ostream &operator<<(ostream &out, Voz &other){
             out << other.destination<<endl;
-
+            
             if(other.bikes == 0){
                 for(int i=0;i<other.num;i++)
                 {

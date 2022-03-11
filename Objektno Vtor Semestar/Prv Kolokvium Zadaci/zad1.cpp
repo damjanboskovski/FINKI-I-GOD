@@ -9,7 +9,7 @@ class Pesna{
     private:
         char ime[50]; int minuti; tip kojtip;
     public:
-        Pesna()=default;
+        Pesna(){};
         Pesna(char ime1[50],int minuti1,tip kojtip1){
             strcpy(ime,ime1); minuti = minuti1; kojtip = kojtip1;
         }
@@ -24,14 +24,13 @@ class CD
     private:
         Pesna p[10]; int pesni, minuti;
     public:
-        CD() = default;
+        CD(){};
         CD(int minuti1){ minuti = minuti1;pesni = 0;}
         ~CD(){};
         void dodadiPesna(Pesna p1){
             int moment = 0;
             for (int i = 0; i < pesni; i++) {moment += p[i].getMinuti();}
-            if (pesni < 10 && moment + p1.getMinuti() <= minuti){
-            p[pesni] = p1; pesni++;}
+            if (pesni < 10 && moment + p1.getMinuti() <= minuti){p[pesni] = p1; pesni++;}
         }
 
         void pecatiPesniPoTip(tip t){

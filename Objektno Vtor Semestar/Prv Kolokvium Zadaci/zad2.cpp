@@ -62,7 +62,8 @@ class ListContainer{
         void addNewList(List array1){
             tries++;
             for(int i=0;i<num;i++){ if(array[i].sum()==array1.sum()){ return;} }
-            array[num] = array1; num++; }
+            array[num] = array1; num++; 
+        }
 
         int sum(){ int sum1=0; for(int i=0;i<num;i++){sum1+=array[i].sum();}return sum1; }
         double average(){ int sum2=0; for(int i=0;i<num;i++){sum2+=array[i].getNum();} return (double) sum()/sum2; }
