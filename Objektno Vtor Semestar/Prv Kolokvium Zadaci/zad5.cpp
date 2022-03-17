@@ -2,270 +2,161 @@
 #include <cstring>
 using namespace std;
 
-class Gitara{
+class Guitar
+{
 private:
-    char seriski[25];
-    double nabavna;
-    int godinaProizvodstvo;
-    char tip[40];
-    public:
-        Gitara(char *tip="",char * seriski ="",int godinaProizvodstvo=0,double nabavna =0)
-        {
-            strcpy(this->tip,tip);
-            strcpy(this->seriski,seriski);
-            this->godinaProizvodstvo = godinaProizvodstvo;
-            this->nabavna = nabavna;
-        }
-        Gitara(const Gitara &g)
-        {
-            strcpy(this->tip,g.tip);
-            strcpy(this->seriski,g.seriski);
-            this->godinaProizvodstvo = g.godinaProizvodstvo;
-            this->nabavna = g.nabavna;
-        }
-        Gitara & operator=(const Gitara &g)
-        {
-            strcpy(this->tip,g.tip);
-            strcpy(this->seriski,g.seriski);
-            this->godinaProizvodstvo = g.godinaProizvodstvo;
-            this->nabavna = g.nabavna;
-            return *this;
-        }
-        ~Gitara()
-        {
-        }
-        bool daliIsti(Gitara &g)
-        {
-         return strcmp(this->seriski,g.seriski)==0;
-        }
-        void pecati()
-        {
-            cout<<seriski<<" "<<tip<<" "<<nabavna<<endl;
-        }
-        double getNabavna()
-        {
-            return nabavna;
-        }
-        char * getTip()
-        {
-            return tip;
-        }
-        char * getSeriski()
-        {
-            return seriski;
-        }
-        int getGodina()
-        {
-            return godinaProizvodstvo;
-        }
+    char serial[25], type[40]; double buy_price; int manufacturing_year;
+public:
+    Guitar(char *type="",char * serial ="",int manufacturing_year=0,double buy_price =0){
+    strcpy(this->type,type); strcpy(this->serial,serial);
+    this->manufacturing_year = manufacturing_year; this->buy_price = buy_price; }
+
+    Guitar(const Guitar &g)
+    {
+        strcpy(this->type,g.type); strcpy(this->serial,g.serial);
+        this->manufacturing_year = g.manufacturing_year; this->buy_price = g.buy_price;
+    }
+
+    Guitar & operator=(const Guitar &g)
+    {
+        strcpy(this->type,g.type); strcpy(this->serial,g.serial);
+        this->manufacturing_year = g.manufacturing_year; this->buy_price = g.buy_price;
+        return *this;
+    }
+
+    ~Guitar(){}
+
+    bool is_equal(Guitar &g){ return strcmp(this->serial,g.serial)==0; }
+
+    void pecati(){ cout<<serial<<" "<<type<<" "<<buy_price<<endl; }
+
+    double getBuy_Price(){ return buy_price; }
+    char *getType(){ return type; } char *getSerial(){ return serial; }
+    int getYear(){ return manufacturing_year; }
 };
 
-class Magacin{
+class Warehouse
+{
 private:
-    char lokacija[60];
-    char ime[50];
-    int godinaOtvaranje;
-    Gitara * niza;
-    int brGitari;
-    public:
-        Magacin(char * ime="",char * lokacija="",int godinaOtvaranje=0)
-        {
-            strcpy(this->lokacija,lokacija);
-            strcpy(this->ime,ime);
-            this->godinaOtvaranje = godinaOtvaranje;
-            niza = NULL;
-            brGitari = 0;
-        }
-        Magacin(const Magacin & m)
-        {
-            strcpy(this->lokacija,m.lokacija);
-            strcpy(this->ime,m.ime);
-            this->godinaOtvaranje = m.godinaOtvaranje;
-            niza = new Gitara[m.brGitari];
-            for(int i =0;i<m.brGitari;i++)
-                niza[i] = m.niza[i];
-            brGitari = m.brGitari;
-        }
+    char location[60], name[50];
+    int opening_year, num;
+    Guitar *arr;
+public:
+    Warehouse(char * name="", char * location="", int opening_year=0){
+        strcpy(this->location,location); strcpy(this->name,name);
+        this->opening_year = opening_year; arr = NULL; num = 0; }
 
-        Magacin & operator=(const Magacin & m)
-        {
-            delete [] niza;
-            strcpy(this->lokacija,m.lokacija);
-            strcpy(this->ime,m.ime);
-            this->godinaOtvaranje = m.godinaOtvaranje;
-            niza = new Gitara[m.brGitari];
-            for(int i =0;i<m.brGitari;i++)
-                niza[i] = m.niza[i];
-            brGitari = m.brGitari;
-            return *this;
-        }
-        ~Magacin(){delete [] niza;}
-        double vrednost()
-        {
-            double sum=0;
-            for(int i=0;i<brGitari;i++)
-                sum+=niza[i].getNabavna();
-                return sum;
+    Warehouse(const Warehouse &w)
+    {
+        strcpy(this->location,w.location); strcpy(this->name,w.name);
+        this->opening_year = w.opening_year; arr = new Guitar[w.num];
+        for(int i =0;i<w.num;i++){ arr[i] = w.arr[i]; }
+        num = w.num;
+    }
 
-        }
-        void dodadi(Gitara & g)
-        {
-            Gitara * tmp = new Gitara[brGitari +1];
-            for(int i=0;i<brGitari;i++)
-                tmp[i] = niza[i];
-            tmp[brGitari++]=g;
-            delete [] niza;
-            niza=tmp;
+    Warehouse & operator=(const Warehouse &w)
+    {
+        delete [] arr; strcpy(this->location,w.location); strcpy(this->name,w.name); this->opening_year = w.opening_year;
 
-        }
-        void prodadi(Gitara & g)
-        {
-            int newBr = 0;
-            for(int i=0;i<brGitari;i++)
-            {
-                if(niza[i].daliIsti(g)==false)
-                {
-                    newBr++;
-                }
-            }
-            Gitara * tmp = new Gitara[newBr];
-            int j=0;
-            for(int i=0;i<brGitari;i++)
-            {
-                if(niza[i].daliIsti(g)==false)
-                {
-                   tmp[j] = niza[i];
-                   j++;
-                }
-            }
-            delete [] niza;
-            niza = tmp;
-            brGitari = newBr;
-        }
-        void pecati(bool daliNovi)
-        {
-            cout<<ime<<" "<< lokacija<<endl;
-            for(int i=0;i<brGitari;i++)
-            {
-                if(daliNovi==true&&niza[i].getGodina()>godinaOtvaranje)
-                {
-                    niza[i].pecati();
-                }
-                else if(daliNovi==false){
-                   niza[i].pecati();
-                }
-            }
-        }
+        arr = new Guitar[w.num];
+        for(int i =0;i<w.num;i++){ arr[i] = w.arr[i]; }
+        num = w.num; return *this;
+    }
+
+    ~Warehouse(){delete [] arr;}
+
+    double values(){ double sum=0; for(int i=0;i<num;i++){ sum+=arr[i].getBuy_Price(); } return sum; }
+
+    void add(Guitar & g)
+    {
+        Guitar * tmp = new Guitar[num +1];
+        for(int i=0;i<num;i++) { tmp[i] = arr[i]; } tmp[num++]=g;
+        delete [] arr; arr=tmp;
+    }
+
+    void sell(Guitar & g)
+    {
+        int cnt=0, j=0;
+        for(int i=0;i<num;i++){ if(arr[i].is_equal(g)==false) { cnt++; } }
+        Guitar *tmp = new Guitar[cnt];
+        for(int i=0;i<num;i++) { if(arr[i].is_equal(g)==false){ tmp[j] = arr[i]; j++; }}
+
+        delete [] arr; arr = tmp; num = cnt;
+    }
+
+    void print(bool is_new)
+    {
+        cout<<name<<" "<<location<<endl;
+        for(int i=0;i<num;i++){
+            if(is_new==true&&arr[i].getYear()>opening_year){ arr[i].pecati(); }
+            else if(is_new==false){ arr[i].pecati(); } }
+    }
 };
-    int main() {
-	// se testira zadacata modularno
-    int testCase;
-    cin >> testCase;
 
-	int n, godina;
-	float cena;
-	char seriski[50],tip[50];
+int main()
+{
+    int testCase, n, year; float price; char serial[50],type[50]; cin>>testCase;
 
-	if(testCase == 1) {
-        cout << "===== Testiranje na klasata Gitara ======" << endl;
-        cin>>tip;
-        cin>>seriski;
-        cin >> godina;
-        cin >> cena;
-        Gitara g(tip,seriski, godina,cena);
-		cout<<g.getTip()<<endl;
-		cout<<g.getSeriski()<<endl;
-		cout<<g.getGodina()<<endl;
-		cout<<g.getNabavna()<<endl;
-    } else if(testCase == 2){
-        cout << "===== Testiranje na klasata Magacin so metodot print() ======" << endl;
-		Magacin kb("Magacin1","Lokacija1");
-        kb.pecati(false);
+	if(testCase == 1)
+    {
+        cout<<"===== Testiranje na klasata Gitara ======"<<endl;
+        cin>>type>>serial>>year>>price; Guitar g(type,serial,year,price);
+		cout<<g.getType()<<endl<<g.getSerial()<<endl<<g.getYear()<<endl<<g.getBuy_Price()<<endl;
+    }
+
+    else if(testCase == 2)
+    {
+        cout<<"===== Testiranje na klasata Magacin so metodot print() ======"<<endl;
+		Warehouse wh("Magacin1","Lokacija1");
+        wh.print(false);
 	}
-    else if(testCase == 3) {
-        cout << "===== Testiranje na klasata Magacin so metodot dodadi() ======" << endl;
-        Magacin kb("Magacin1","Lokacija1",2005);
-		cin>>n;
+
+    else if(testCase == 3)
+    {
+        cout<<"===== Testiranje na klasata Magacin so metodot dodadi() ======"<<endl;
+        Warehouse wh("Magacin1","Lokacija1",2005); cin>>n;
+
 			for (int i=0;i<n;i++){
-                cin>>tip;
-                cin>>seriski;
-                cin >> godina;
-                cin >> cena;
-                Gitara g(tip,seriski, godina,cena);
-                cout<<"gitara dodadi"<<endl;
-				kb.dodadi(g);
-			}
-        kb.pecati(true);
+                cin>>type>>serial>>year>>price; Guitar g(type,serial,year,price);
+                cout<<"gitara dodadi"<<endl; wh.add(g); }
+
+        wh.print(true);
     }
 
-    else if(testCase == 4) {
-        cout << "===== Testiranje na klasata Magacin so metodot prodadi() ======" << endl;
-        Magacin kb("Magacin1","Lokacija1",2012);
-            cin>>n;
-            Gitara brisi;
-			for (int i=0;i<n;i++){
-                cin>>tip;
-                cin>>seriski;
-                cin >> godina;
-                cin >> cena;
+    else if(testCase == 4)
+    {
+        cout<<"===== Testiranje na klasata Magacin so metodot prodadi() ======"<<endl;
+        Warehouse wh("Magacin1","Lokacija1",2012); cin>>n; Guitar del;
 
-                Gitara g(tip,seriski, godina,cena);
-                if(i==2)
-                    brisi=g;
-                cout<<"gitara dodadi"<<endl;
-				kb.dodadi(g);
-			}
-        kb.pecati(false);
-        kb.prodadi(brisi);
-        kb.pecati(false);
+			for (int i=0;i<n;i++){
+                cin>>type>>serial>>year>>price; Guitar g(type,serial,year,price);
+                if(i==2) { del=g; } cout<<"gitara dodadi"<<endl; wh.add(g); }
+
+        wh.print(false); wh.sell(del); wh.print(false);
     }
-    else if(testCase == 5) {
-        cout << "===== Testiranje na klasata Magacin so metodot prodadi() i pecati(true) ======" << endl;
-        Magacin kb("Magacin1","Lokacija1",2011);
-            cin>>n;
-            Gitara brisi;
-			for (int i=0;i<n;i++){
-                cin>>tip;
-                cin>>seriski;
-                cin >> godina;
-                cin >> cena;
 
-                Gitara g(tip,seriski, godina,cena);
-                if(i==2)
-                    brisi=g;
-                cout<<"gitara dodadi"<<endl;
-				kb.dodadi(g);
-			}
-        kb.pecati(true);
-        kb.prodadi(brisi);
-        cout<<"Po brisenje:"<<endl;
-        Magacin kb3;
-        kb3=kb;
-        kb3.pecati(true);
+    else if(testCase == 5)
+    {
+        cout<<"===== Testiranje na klasata Magacin so metodot prodadi() i pecati(true) ======"<<endl;
+        Warehouse wh("Magacin1","Lokacija1",2011); cin>>n; Guitar del;
+
+			for (int i=0;i<n;i++){
+                cin>>type>>serial>>year>>price; Guitar g(type,serial,year,price);
+                if(i==2) { del=g; } cout<<"gitara dodadi"<<endl; wh.add(g); }
+
+        wh.print(true); wh.sell(del); cout<<"Po brisenje:"<<endl; Warehouse wh2; wh2=wh; wh2.print(true);
     }
-   else if(testCase ==6)
-        {
-        cout << "===== Testiranje na klasata Magacin so metodot vrednost()======" << endl;
-        Magacin kb("Magacin1","Lokacija1",2011);
-            cin>>n;
-            Gitara brisi;
-			for (int i=0;i<n;i++){
-                cin>>tip;
-                cin>>seriski;
-                cin >> godina;
-                cin >> cena;
 
-                Gitara g(tip,seriski, godina,cena);
-                if(i==2)
-                    brisi=g;
-				kb.dodadi(g);
-			}
-        cout<<kb.vrednost()<<endl;
-        kb.prodadi(brisi);
-        cout<<"Po brisenje:"<<endl;
-        cout<<kb.vrednost();
-        Magacin kb3;
-        kb3=kb;
-        }
+    else if(testCase == 6)
+    {
+        cout<<"===== Testiranje na klasata Magacin so metodot vrednost()======"<<endl;
+        Warehouse wh("Magacin1","Lokacija1",2011); cin>>n; Guitar del;
+
+        for (int i=0;i<n;i++){ cin>>type>>serial>>year>>price; Guitar g(type,serial,year,price); if(i==2) { del=g; } wh.add(g); }
+
+        cout<<wh.values()<<endl; wh.sell(del);
+        cout<<"Po brisenje:"<<endl<<wh.values(); Warehouse wh2; wh2=wh;
+    }
+
     return 0;
 }

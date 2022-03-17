@@ -37,7 +37,7 @@ void najdobar_park(ZabavenPark *niza, int n)
         if(count>maxV){
             maxV = count;  maxI = i;  maxVremetraenje = vreme;
         }
-        else if(count==maxV&&vreme>maxVremetraenje){
+        else if(count==maxV && vreme > maxVremetraenje){
             maxI = i;  maxVremetraenje = vreme;
         }
     }
