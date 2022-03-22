@@ -4,7 +4,6 @@
 #define DENOVI 5
 
 typedef struct RabotnaNedela{ int casovi[DENOVI], weekNum; }RN;
-
 typedef struct Rabotnik { char ime[50]; RN nedeli[NEDELI]; }R;
 
 int maxNedela(R *r){
@@ -20,9 +19,7 @@ void table(R *r, int n){
     printf("Rab\t1\t2\t3\t4\tVkupno\n");
     for(int i=0;i<n;i++){ int total=0; printf("%s\t",r[i].ime);
         for(int j=0;j<NEDELI;j++){ int sum = 0;
-            for(int k=0;k<DENOVI;k++){
-                sum+=r[i].nedeli[j].casovi[k];
-            }
+            for(int k=0;k<DENOVI;k++){ sum+=r[i].nedeli[j].casovi[k];}
             printf("%d\t", sum); total+=sum;
         }
         printf("%d\n",total);
@@ -35,9 +32,7 @@ int main() {
 
     for (int i = 0; i < n; ++i) { scanf("%s", rabotnici[i].ime);
         for (int j = 0; j < NEDELI; ++j) {
-            for (int k = 0; k < DENOVI; ++k) {
-                scanf("%d", &rabotnici[i].nedeli[j].casovi[k]);
-            }
+            for (int k = 0; k < DENOVI; ++k) { scanf("%d", &rabotnici[i].nedeli[j].casovi[k]); }
         }
     }
     printf("TABLE\n"); table(rabotnici, n);

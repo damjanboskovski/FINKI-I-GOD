@@ -11,7 +11,7 @@ int maxNedela(R *r){
     int max=0, temp=0;
     for(int i=0;i<NEDELI;i++){ int sum = 0;
         for(int j=0;j<DENOVI;j++){ sum += r->nedeli[i].casovi[j]; }
-            if(sum > max){ max = sum; temp = i; } 
+            sum > max?max = sum, temp = i:0;  
     }
     return temp + 1;
 }
@@ -35,11 +35,8 @@ int main() {
 
     for (int i = 0; i < n; ++i) { scanf("%s", rabotnici[i].ime);
         for (int j = 0; j < NEDELI; ++j) {
-            for (int k = 0; k < DENOVI; ++k) {
-                scanf("%d", &rabotnici[i].nedeli[j].casovi[k]);
-            }
-        }
-    }
+            for (int k = 0; k < DENOVI; ++k) { scanf("%d", &rabotnici[i].nedeli[j].casovi[k]); } } }
+
     printf("TABLE\n"); table(rabotnici, n);
     printf("MAX NEDELA NA RABOTNIK: %s\n%d\n", rabotnici[n / 2].ime,maxNedela(&rabotnici[n / 2]));
     return 0;

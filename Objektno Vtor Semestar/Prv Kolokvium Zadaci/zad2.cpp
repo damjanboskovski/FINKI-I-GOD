@@ -4,19 +4,16 @@ using namespace std;
 class List{
     private: int *arr; int num;
     public:
-        List(){arr = nullptr;num=0;}
-        List(int *a1,int n1)
-        {
-            arr = new int[n1];
-            for(int i=0;i<n1;i++) {arr[i] = a1[i];}
-            num = n1;
+        List(){arr = nullptr; num=0;}
+        List(int *a1,int n1) {
+            arr = new int[n1]; this->num = n1;
+            for(int i=0;i<n1;i++) {this->arr[i] = a1[i];}
         }
         ~List(){}
 
         List &operator=(const List &other){
-            arr = new int[other.num];
-            for(int i=0;i<other.num;i++){arr[i]=other.arr[i];}
-            num = other.num; return *this;
+            this->arr = new int[other.num];this->num = other.num;
+            for(int i=0;i<other.num;i++){arr[i]=other.arr[i];} return *this;
         }
 
         void pecati(){
@@ -32,9 +29,9 @@ class List{
 class ListContainer{
     private: List *array; int num=0,tries=0;
     public:
-        ListContainer(){array = new List[50];};
+        ListContainer(){array = new List[this->num];};
         ListContainer(List *array1, int n1, int t1){
-            array = new List[50]; 
+            array = new List[this->num]; 
             for(int i=0;i<num;i++){
                 array[i] = array1[i];
             }
@@ -51,16 +48,12 @@ class ListContainer{
         void print(){
             if(num == 0){cout << "The list is empty" << endl;}
             else{
-                for(int i=0;i<num;i++){
-                    cout<<"List number: "<<i+1<<" List info: "; array[i].pecati(); 
-                }
-            cout << "Sum: "<<sum()<<" Average: "<<average()<<endl;
-            cout << "Successful attempts: "<<num<<" Failed attempts: "<<tries-num<<endl;
+                for(int i=0;i<num;i++){ cout<<"List number: "<<i+1<<" List info: "; array[i].pecati(); }
+            cout << "Sum: "<<sum()<<" Average: "<<average()<<endl << "Successful attempts: "<<num<<" Failed attempts: "<<tries-num<<endl;
             }
         }
 
-        void addNewList(List array1){
-            tries++;
+        void addNewList(List array1){ tries++;
             for(int i=0;i<num;i++){ if(array[i].sum()==array1.sum()){ return;} }
             array[num] = array1; num++; 
         }

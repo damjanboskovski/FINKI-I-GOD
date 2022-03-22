@@ -8,25 +8,19 @@ class Ucesnik{
     public:
         Ucesnik(){ name = nullptr; };
         Ucesnik(char *n, bool g, int a){
-            name = new char[100];
-            strcpy(name, n); gender = g; age = a;
+            name = new char[strlen(n)+1]; strcpy(this->name, n); 
+            this->gender = g; this->age = a;
         }
         ~Ucesnik(){};
 
-        Ucesnik &operator>(const Ucesnik &other){
-            if(this->age > other.age){this->age;}
-            else {other.age;}
-            return *this;
-        }
+        Ucesnik &operator>(const Ucesnik &other){ this->age > other.age?this->age:other.age; return *this; }
 
         friend ostream &operator<<(ostream &output, Ucesnik &other){
             string genderConv;
-            if(other.gender == 0){genderConv = "zhenski";}
-            else {genderConv = "mashki";}
+            other.gender == 0?genderConv = "zhenski":genderConv = "mashki";
             output<<other.name<<endl<<genderConv<<endl<<other.age<<endl;
         }
-
-        int getAge(){return age;}
+        int getAge(){return this->age;}
 };
 
 class Maraton{
@@ -34,10 +28,10 @@ class Maraton{
         char location[100]; Ucesnik *arr; int num = 0;
     public:
         Maraton(){ arr = nullptr; };
-        Maraton(char l[100]){strcpy(location,l); arr = new Ucesnik[1024];}
+        Maraton(char *l){strcpy(location,l); arr = new Ucesnik[1024];}
         ~Maraton(){};
 
-        Maraton &operator+=(Ucesnik &add){ arr[num] = add; num++; }
+        Maraton &operator+=(Ucesnik &add){ arr[num++] = add; }
 
         float prosecnoVozrast(){
             float avg = 0; 
@@ -45,9 +39,7 @@ class Maraton{
             return avg/num; 
         }
         void pecatiPomladi(Ucesnik &p){
-            for(int i=0;i<num;i++){
-                if(arr[i].getAge()<p.getAge()){ cout<<arr[i]; }
-            }
+            for(int i=0;i<num;i++){ if(arr[i].getAge()<p.getAge()){ cout<<arr[i]; } }
         }
 };
 

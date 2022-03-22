@@ -1,0 +1,979 @@
+1.-----------------------------------------------------------------------------------------------------
+int main() {
+	// se testira zadacata modularno
+    int testCase;
+    cin >> testCase;
+	
+	int n, minuti, kojtip;
+	char ime[50];
+	
+	if(testCase == 1) {
+        cout << "===== Testiranje na klasata Pesna ======" << endl;
+        cin >> ime;
+        cin >> minuti;
+        cin >> kojtip; //se vnesuva 0 za POP,1 za RAP i 2 za ROK
+        Pesna p(ime,minuti,(tip)kojtip);
+		p.pecati();
+    } else if(testCase == 2) {
+        cout << "===== Testiranje na klasata CD ======" << endl;
+		CD omileno(20);
+		cin>>n;
+			for (int i=0;i<n;i++){
+				cin >> ime;
+				cin >> minuti;
+				cin >> kojtip; //se vnesuva 0 za POP,1 za RAP i 2 za ROK
+				Pesna p(ime,minuti,(tip)kojtip);
+				omileno.dodadiPesna(p);
+			}
+        	for (int i=0; i<n; i++)
+				(omileno.getPesna(i)).pecati();
+	}
+    else if(testCase == 3) {
+        cout << "===== Testiranje na metodot dodadiPesna() od klasata CD ======" << endl;
+		CD omileno(20);
+		cin>>n;
+			for (int i=0;i<n;i++){
+				cin >> ime;
+				cin >> minuti;
+				cin >> kojtip; //se vnesuva 0 za POP,1 za RAP i 2 za ROK
+				Pesna p(ime,minuti,(tip)kojtip);
+				omileno.dodadiPesna(p);
+			}
+        	for (int i=0; i<omileno.getBroj(); i++)
+				(omileno.getPesna(i)).pecati();
+    }
+    else if(testCase == 4) {
+        cout << "===== Testiranje na metodot pecatiPesniPoTip() od klasata CD ======" << endl;
+		CD omileno(20);
+		cin>>n;
+			for (int i=0;i<n;i++){
+				cin >> ime;
+				cin >> minuti;
+				cin >> kojtip; //se vnesuva 0 za POP,1 za RAP i 2 za ROK
+				Pesna p(ime,minuti,(tip)kojtip);
+				omileno.dodadiPesna(p);
+			}
+        cin>>kojtip;
+        omileno.pecatiPesniPoTip((tip)kojtip);
+        	
+    }
+    else if(testCase == 5) {
+        cout << "===== Testiranje na metodot pecatiPesniPoTip() od klasata CD ======" << endl;
+		CD omileno(20);
+		cin>>n;
+			for (int i=0;i<n;i++){
+				cin >> ime;
+				cin >> minuti;
+				cin >> kojtip; //se vnesuva 0 za POP,1 za RAP i 2 za ROK
+				Pesna p(ime,minuti,(tip)kojtip);
+				omileno.dodadiPesna(p);
+			}
+        cin>>kojtip;
+        omileno.pecatiPesniPoTip((tip)kojtip);
+        	
+    }
+    
+return 0;
+}
+
+2.-----------------------------------------------------------------------------------------------------
+int main() {
+	
+	ListContainer lc;
+	int N;	
+	cin>>N;	
+    
+	for (int i=0;i<N;i++) {
+		int n;
+		int niza[100];
+		
+		cin>>n;
+       
+		for (int j=0;j<n;j++){
+			cin>>niza[j];
+            
+		}
+       
+		List l=List(niza,n);
+	
+		lc.addNewList(l);
+	}	
+	
+    
+    int testCase;
+    cin>>testCase;
+    
+    if (testCase==1) {
+        cout<<"Test case for operator ="<<endl;
+        ListContainer lc1;
+        lc1.print();
+        cout<<lc1.sum()<<" "<<lc.sum()<<endl;
+        lc1=lc;
+        lc1.print();
+        cout<<lc1.sum()<<" "<<lc.sum()<<endl;
+        lc1.sum();
+        lc1.average();
+        
+    }
+    else {
+        lc.print();
+    }
+}
+
+3.-------------------------------------------------------------------------------------------------------
+#include<iostream>
+#include<cstring>
+using namespace std;
+
+// vasiot kod za klasite ovde
+
+// ne menuvaj vo main-ot
+int main(){
+	
+    int test;
+    cin >> test;
+    
+    if(test == 1){
+    	double price;
+        cout << "=====TEST NA KLASATA StockRecord=====" << endl;
+        StockRecord sr("1", "Microsoft", 60.0, 100);
+        cout << "Konstruktor OK" << endl;
+        cin >> price;
+        sr.setNewPrice(price);
+        cout << "SET metoda OK" << endl;
+    }
+    else if(test == 2){
+        cout << "=====TEST NA METODITE I OPERATOR << OD KLASATA StockRecord=====" << endl;
+    	char id[12], company[50];
+        double price, newPrice;
+        int n, shares;
+        cin >> n;
+        for(int i = 0; i < n; ++i){
+        	cin >> id;
+            cin >> company;
+            cin >> price;
+            cin >> newPrice;
+            cin >> shares;
+            StockRecord sr(id, company, price, shares);
+            sr.setNewPrice(newPrice);
+            cout << sr.value() << endl;
+            cout << sr;
+        }
+    }
+    else if(test == 3){
+    	cout << "=====TEST NA KLASATA Client=====" << endl;
+        char companyID[12], companyName[50], clientName[50];
+        int clientID, n, shares;
+        double oldPrice, newPrice;
+        bool flag = true;
+        cin >> clientName;
+        cin >> clientID;
+        cin >> n;
+        Client c(clientName, clientID);
+        cout << "Konstruktor OK" << endl;
+        for(int i = 0; i < n; ++i){
+            cin >> companyID;
+            cin >> companyName;
+            cin >> oldPrice;
+            cin >> newPrice;
+            cin >> shares;
+        	StockRecord sr(companyID, companyName, oldPrice, shares);
+            sr.setNewPrice(newPrice);
+            c += sr;
+            if(flag){
+            	cout << "Operator += OK" << endl;
+                flag = false;
+            }
+        }
+        cout << c;
+        cout << "Operator << OK" << endl;
+    } 
+    return 0;
+
+}
+
+4.-------------------------------------------------------------------------------------------------------
+#include<iostream>
+#include<cstring>
+using namespace std;
+
+int main()
+{
+	Patnik p;
+	char ime[100], destinacija[100];
+	int n;
+	bool velosiped;
+	int klasa;
+	int maxv;
+	cin >> destinacija >> maxv;
+	cin >> n;
+	Voz v(destinacija, maxv);
+	//cout<<v<<endl;
+	for (int i = 0; i < n; i++){
+		cin >> ime >> klasa >> velosiped;
+		Patnik p(ime, klasa, velosiped);
+		//cout<<p<<endl;
+		v += p;
+	}
+	cout << v;
+	v.patniciNemaMesto();
+
+	return 0;
+}
+
+5.-------------------------------------------------------------------------------------------------------
+ int main() {
+	// se testira zadacata modularno
+    int testCase;
+    cin >> testCase;
+
+	int n, godina;
+	float cena;
+	char seriski[50],tip[50];
+
+	if(testCase == 1) {
+        cout << "===== Testiranje na klasata Gitara ======" << endl;
+        cin>>tip;
+        cin>>seriski;
+        cin >> godina;
+        cin >> cena;
+        Gitara g(tip,seriski, godina,cena);
+		cout<<g.getTip()<<endl;
+		cout<<g.getSeriski()<<endl;
+		cout<<g.getGodina()<<endl;
+		cout<<g.getNabavna()<<endl;
+    } else if(testCase == 2){
+        cout << "===== Testiranje na klasata Magacin so metodot print() ======" << endl;
+		Magacin kb("Magacin1","Lokacija1");
+        kb.pecati(false);
+	}
+    else if(testCase == 3) {
+        cout << "===== Testiranje na klasata Magacin so metodot dodadi() ======" << endl;
+        Magacin kb("Magacin1","Lokacija1",2005);
+		cin>>n;
+			for (int i=0;i<n;i++){
+                cin>>tip;
+                cin>>seriski;
+                cin >> godina;
+                cin >> cena;
+                Gitara g(tip,seriski, godina,cena);
+                cout<<"gitara dodadi"<<endl;
+				kb.dodadi(g);
+			}
+        kb.pecati(true);
+    }
+
+    else if(testCase == 4) {
+        cout << "===== Testiranje na klasata Magacin so metodot prodadi() ======" << endl;
+        Magacin kb("Magacin1","Lokacija1",2012);
+            cin>>n;
+            Gitara brisi;
+			for (int i=0;i<n;i++){
+                cin>>tip;
+                cin>>seriski;
+                cin >> godina;
+                cin >> cena;
+
+                Gitara g(tip,seriski, godina,cena);
+                if(i==2)
+                    brisi=g;
+                cout<<"gitara dodadi"<<endl;
+				kb.dodadi(g);
+			}
+        kb.pecati(false);
+        kb.prodadi(brisi);
+        kb.pecati(false);
+    }
+    else if(testCase == 5) {
+        cout << "===== Testiranje na klasata Magacin so metodot prodadi() i pecati(true) ======" << endl;
+        Magacin kb("Magacin1","Lokacija1",2011);
+            cin>>n;
+            Gitara brisi;
+			for (int i=0;i<n;i++){
+                cin>>tip;
+                cin>>seriski;
+                cin >> godina;
+                cin >> cena;
+
+                Gitara g(tip,seriski, godina,cena);
+                if(i==2)
+                    brisi=g;
+                cout<<"gitara dodadi"<<endl;
+				kb.dodadi(g);
+			}
+        kb.pecati(true);
+        kb.prodadi(brisi);
+        cout<<"Po brisenje:"<<endl;
+        Magacin kb3;
+        kb3=kb;
+        kb3.pecati(true);
+    }
+   else if(testCase ==6)
+        {
+        cout << "===== Testiranje na klasata Magacin so metodot vrednost()======" << endl;
+        Magacin kb("Magacin1","Lokacija1",2011);
+            cin>>n;
+            Gitara brisi;
+			for (int i=0;i<n;i++){
+                cin>>tip;
+                cin>>seriski;
+                cin >> godina;
+                cin >> cena;
+
+                Gitara g(tip,seriski, godina,cena);
+                if(i==2)
+                    brisi=g;
+				kb.dodadi(g);
+			}
+        cout<<kb.vrednost()<<endl;
+        kb.prodadi(brisi);
+        cout<<"Po brisenje:"<<endl;
+        cout<<kb.vrednost();
+        Magacin kb3;
+        kb3=kb;
+        }
+    return 0;
+}
+
+6.-------------------------------------------------------------------------------------------------------
+int main(){
+	
+    int n;
+	cin>>n; //se cita brojot na zelezlnichki stanici
+
+    ZeleznickaStanica zStanica[100];
+    for (int i=0;i<n;i++){
+        //se citaat infomracii za n zelezlnichkite stanici i se zacuvuvaat vo poleto zStanica
+    }
+    
+    char grad[25];
+    cin>>grad;
+
+	najkratkaRelacija(zStanica,n,grad);
+	return 0;
+}
+
+7.-------------------------------------------------------------------------------------------------------
+int main()
+{
+	int i, j, n, broj;
+	//kreiraj niza od maksimum 100 zabavni parkovi
+	ZabavenPark ff[100];
+	scanf("%d", &n);
+    //citanje na podatocite
+    for (i = 0; i < n; i++){
+		//ime na festivalot
+		scanf("%s", ff[i].ime);
+        //mesto
+		scanf("%s", ff[i].lokacija);
+		//broj na filmovi
+		scanf("%d", &ff[i].n);
+
+		for (j = 0; j < ff[i].n; j++){
+			scanf("%s", ff[i].niza[j].ime);  			/* Ime na filmot */
+			scanf("%d", &ff[i].niza[j].traenje); 		/* Vremetraenje   */
+			scanf("%f", &ff[i].niza[j].cena); 	/* Cena */
+            scanf("%d", &ff[i].niza[j].daliPopust);	/* Popust */
+
+		}
+
+
+			}
+    pecati(ff,n);
+    najdobar_park(ff,n);
+
+	return 0;
+}
+
+8.-------------------------------------------------------------------------------------------------------
+int main() {
+    ITStore s[100];
+    int n;
+    scanf("%d",&n); //broj na IT prodavnici
+    //vnesuvanje na prodavnicite edna po edna, zaedno so raspolozlivite laptopvi vo niv
+    //pecatenje na site prodavnici
+    //povik na glavnata metoda
+    najeftina_ponuda(s, n);
+
+    return 0;
+}
+
+9.-------------------------------------------------------------------------------------------------------
+int main() {
+    ITStore s[100];
+    int n;
+    cin >> n; //broj na IT prodavnici
+    //vnesuvanje na prodavnicite edna po edna, zaedno so raspolozlivite laptopvi vo niv
+    //pecatenje na site prodavnici
+    //povik na glavnata metoda
+    
+    return 0;
+}
+10.------------------------------------------------------------------------------------------------------
+int main() {
+    int n,m;
+    char ime[20];
+    cin>>n;
+    KompjuterskaIgra poleigri[100];
+    for (int i=0; i<n; i++) {
+        KompjuterskaIgra nova;
+        cin>>nova.ime>>nova.n;
+        Igrac pole[30];
+        for (int j=0; j<nova.n; j++) {
+            Igrac nov;
+            cin>>nov.korisnickoIme>>nov.nivo>>nov.poeni;
+            nova.lista[j]=nov;
+        }
+        poleigri[i]=nova;
+    }
+
+    najdobarIgrac(poleigri,n);
+    return 0;
+}
+
+11.------------------------------------------------------------------------------------------------------
+int main() {
+    char ime[100];
+    bool maski;
+    int vozrast, n;
+    cin >> n;
+    char lokacija[100];
+    cin >> lokacija;
+    Maraton m(lokacija);
+    Ucesnik **u = new Ucesnik*[n];
+    for(int i = 0; i < n; ++i) {
+        cin >> ime >> maski >> vozrast;
+    	u[i] = new Ucesnik(ime, maski, vozrast);
+        m += *u[i];
+    }
+	m.pecatiPomladi(*u[n - 1]);
+    cout << m.prosecnoVozrast() << endl;
+    for(int i = 0; i < n; ++i) {
+        delete u[i];
+    }
+    delete [] u;
+	return 0;
+}
+
+12.------------------------------------------------------------------------------------------------------
+int main() {
+
+	int n;
+	char ime[15];
+	cin >> ime;
+	cin >> n;
+
+	Picerija p1(ime);
+	for (int i = 0; i < n; i++){
+		char imp[100];
+		cin.get();
+		cin.getline(imp, 100);
+		int cena;
+		cin >> cena;
+		char sostojki[100];
+		cin.get();
+		cin.getline(sostojki, 100);
+		int popust;
+		cin >> popust;
+		Pica p(imp, cena, sostojki, popust);
+		p1+=p;
+	}
+
+	Picerija p2 = p1;
+	cin >> ime;
+	p2.setIme(ime);
+	char imp[100];
+	cin.get();
+	cin.getline(imp, 100);
+	int cena;
+	cin >> cena;
+	char sostojki[100];
+	cin.get();
+	cin.getline(sostojki, 100);
+	int popust;
+	cin >> popust;
+	Pica p(imp, cena, sostojki, popust);
+	p2+=p;
+
+	cout << p1.getIme() << endl;
+	cout << "Pici na promocija:" << endl;
+	p1.piciNaPromocija();
+
+	cout << p2.getIme() << endl;
+	cout << "Pici na promocija:" << endl;
+	p2.piciNaPromocija();
+
+	return 0;
+}
+
+13.------------------------------------------------------------------------------------------------------
+int main(){
+
+   PlaninarskiDom p; //креирање на нов објект од класата планинарски дом
+
+   //во следниот дел се вчитуваат информации за планинарскиот дом
+   char imePlaninarskiDom[15],mestoZichara[30],klasa;
+   int ceni[12];
+   int dnevnakartaZichara;
+   bool daliZichara;
+   cin>>imePlaninarskiDom;
+   for (int i=0;i<2;i++) cin>>ceni[i];
+   cin>>klasa;
+   cin>>daliZichara;
+
+   //во следниот дел се внесуваат информации и за жичарата ако постои
+   if (daliZichara) {
+      cin>>mestoZichara>>dnevnakartaZichara;
+      PlaninarskiDom pom(imePlaninarskiDom,ceni,klasa);
+      Zichara r(mestoZichara,dnevnakartaZichara);
+      pom.setZichara(r);
+      p=pom;
+   }
+   else{
+      PlaninarskiDom *pok=new PlaninarskiDom(imePlaninarskiDom,ceni,klasa);
+      p=*pok;
+   }
+
+   //се намалува класата на планинарскиот дом за 2
+   --p;
+   --p;
+
+   int cena;
+   int den,mesec;
+   cin>>den>>mesec;
+   try{
+   p.presmetajDnevenPrestoj(den,mesec,cena); //тука се користи функцијата presmetajDnevenPrestoj
+   cout<<"Informacii za PlaninarskiDomot:"<<endl;
+   cout<<p;
+   if (p<='D') 
+       cout<<"Planinarskiot dom za koj se vneseni informaciite ima klasa poniska ili ista so D\n";
+       
+   cout<<"Cenata za "<<den<<"."<<mesec<<" e "<<cena; //се печати цената за дадениот ден и месец
+   }
+   catch (int){
+      cout<<"Mesecot ili denot e greshno vnesen!";
+   }
+}
+
+14.------------------------------------------------------------------------------------------------------
+int main() {
+	char fileName[20];
+	char fileOwner[20];
+	int ext;
+	int fileSize;
+
+	int testCase;
+	cin >> testCase;
+	if (testCase == 1) {
+		cout << "======= FILE CONSTRUCTORS AND = OPERATOR =======" << endl;
+		cin >> fileName;
+		cin >> fileOwner;
+		cin >> fileSize;
+		cin >> ext;
+
+		File created = File(fileName, fileOwner, fileSize, (Extension) ext);
+		File copied = File(created);
+		File assigned = created;
+
+		cout << "======= CREATED =======" << endl;
+		created.print();
+		cout << endl;
+        cout << "======= COPIED =======" << endl;
+		copied.print();
+		cout << endl;
+        cout << "======= ASSIGNED =======" << endl;
+		assigned.print();
+	}
+	else if (testCase == 2) {
+		cout << "======= FILE EQUALS & EQUALS TYPE =======" << endl;
+		cin >> fileName;
+		cin >> fileOwner;
+		cin >> fileSize;
+		cin >> ext;
+
+		File first(fileName, fileOwner, fileSize, (Extension) ext);
+		first.print();
+
+		cin >> fileName;
+		cin >> fileOwner;
+		cin >> fileSize;
+		cin >> ext;	
+
+		File second(fileName, fileOwner, fileSize, (Extension) ext);
+		second.print();
+
+		cin >> fileName;
+		cin >> fileOwner;
+		cin >> fileSize;
+		cin >> ext;
+
+		File third(fileName, fileOwner, fileSize, (Extension) ext);
+		third.print();
+
+		bool equals = first.equals(second);
+		cout << "FIRST EQUALS SECOND: ";
+		if (equals)
+			cout << "TRUE" << endl;
+		else
+			cout << "FALSE" << endl;
+
+		equals = first.equals(third);
+		cout << "FIRST EQUALS THIRD: ";
+		if (equals)
+			cout << "TRUE" << endl;
+		else
+			cout << "FALSE" << endl;
+
+		bool equalsType = first.equalsType(second);
+		cout << "FIRST EQUALS TYPE SECOND: ";
+		if (equalsType)
+			cout << "TRUE" << endl;
+		else
+			cout << "FALSE" << endl;
+
+		equalsType = second.equals(third);
+		cout << "SECOND EQUALS TYPE THIRD: ";
+		if (equalsType)
+			cout << "TRUE" << endl;
+		else
+			cout << "FALSE" << endl;
+
+	}
+	else if (testCase == 3) {
+		cout << "======= FOLDER CONSTRUCTOR =======" << endl;
+		cin >> fileName;
+		Folder folder(fileName);
+		folder.print();
+
+	}
+	else if (testCase == 4) {
+		cout << "======= ADD FILE IN FOLDER =======" << endl;
+		char name[20];
+		cin >> name;
+		Folder folder(name);
+
+		int iter;
+		cin >> iter;
+
+		while (iter > 0) {
+			cin >> fileName;
+			cin >> fileOwner;
+			cin >> fileSize;
+			cin >> ext;
+
+			File file(fileName, fileOwner, fileSize, (Extension) ext);
+			folder.add(file);
+			iter--;
+		}
+		folder.print();
+	}
+	else {
+		cout << "======= REMOVE FILE FROM FOLDER =======" << endl;
+		char name[20];
+		cin >> name;
+		Folder folder(name);
+
+		int iter;
+		cin >> iter;
+
+		while (iter > 0) {
+			cin >> fileName;
+			cin >> fileOwner;
+			cin >> fileSize;
+			cin >> ext;
+
+			File file(fileName, fileOwner, fileSize, (Extension) ext);
+			folder.add(file);
+			iter--;
+		}
+		cin >> fileName;
+		cin >> fileOwner;
+		cin >> fileSize;
+		cin >> ext;
+
+		File file(fileName, fileOwner, fileSize, (Extension) ext);
+		folder.remove(file);
+		folder.print();
+	}
+	return 0;
+}
+
+15.------------------------------------------------------------------------------------------------------
+int main() {
+    int n;
+    scanf("%d", &n);
+    R rabotnici[n];
+    int i;
+    for (i = 0; i < n; ++i) {
+        scanf("%s", rabotnici[i].ime);
+        int j;
+        for (j = 0; j < NEDELI; ++j) {
+            int k;
+            for (k = 0; k < DENOVI; ++k) {
+                scanf("%d", &rabotnici[i].nedeli[j].casovi[k]);
+            }
+
+        }
+    }
+    printf("TABLE\n");
+    table(rabotnici, n);
+    printf("MAX NEDELA NA RABOTNIK: %s\n", rabotnici[n / 2].ime);
+    printf("%d\n", maxNedela(&rabotnici[n / 2]));
+    return 0;
+}
+
+16.------------------------------------------------------------------------------------------------------
+int main() {
+    int n;
+    scanf("%d", &n);
+    R rabotnici[n];
+    int i;
+    for (i = 0; i < n; ++i) {
+        scanf("%s", rabotnici[i].ime);
+        int j;
+        for (j = 0; j < NEDELI; ++j) {
+            int k;
+            for (k = 0; k < DENOVI; ++k) {
+                scanf("%d", &rabotnici[i].nedeli[j].casovi[k]);
+            }
+
+        }
+    }
+    printf("TABLE\n");
+    table(rabotnici, n);
+    printf("MAX NEDELA NA RABOTNIK: %s\n", rabotnici[n / 2].ime);
+    printf("%d\n", maxNedela(&rabotnici[n / 2]));
+    return 0;
+}
+
+17.------------------------------------------------------------------------------------------------------
+int main() {
+    char repoName[20];
+    cin>>repoName;
+    Repozitorium repozitorium=Repozitorium(repoName);
+    int brojOperativniSistemi = 0;
+    cin>>brojOperativniSistemi;
+    char ime[20];
+    float verzija;
+    int tip;
+    float golemina;
+    for (int i = 0; i<brojOperativniSistemi; i++){
+        cin>>ime;
+        cin>>verzija;
+        cin>>tip;
+        cin>>golemina;
+        OperativenSistem os = OperativenSistem(ime, verzija, (Tip)tip, golemina);
+        repozitorium.dodadi(os);
+    }
+
+    repozitorium.pecatiOperativniSistemi();
+     cin>>ime;
+    cin>>verzija;
+    cin>>tip;
+    cin>>golemina;
+    OperativenSistem os = OperativenSistem(ime, verzija, (Tip)tip, golemina);
+    cout<<"=====Brishenje na operativen sistem====="<<endl;
+    repozitorium.izbrishi(os);
+    repozitorium.pecatiOperativniSistemi();
+    return 0;
+}
+
+18.------------------------------------------------------------------------------------------------------
+int main()
+{
+	scanf("%d", &n);
+	for (i = 0; i < n; i++){
+		//vnesi ime
+		//vnesi drzava
+		//vnesi broj na liftovi
+        
+		
+        //za sekoj ski lift vnesi:
+			//vnesi ime
+            //vnesi maksimalen broj korisnici
+            //vnesi dali e pusten vo funkcija
+	}
+	
+    //povik na funkcijata najgolemKapacitet
+	
+	return 0;
+}
+
+19.------------------------------------------------------------------------------------------------------
+int main() {
+    char name[100];
+    char ingr[100];
+    float price;
+    int discount;
+
+    int testCase;
+
+    cin >> testCase;
+	cin.get();
+    if(testCase == 1) {
+        cout << "====== TESTING IceCream CLASS ======" << endl;
+        cin.getline(name,100);
+        cin.getline(ingr,100);
+        cin >> price;
+        cin >> discount;
+        cout << "CONSTRUCTOR" << endl;
+        IceCream ic1(name, ingr, price);
+        ic1.setDiscount(discount);
+        cin.get();
+        cin.getline(name,100);
+        cin.getline(ingr,100);
+        cin >> price;
+        cin >> discount;
+        IceCream ic2(name, ingr, price);
+        ic2.setDiscount(discount);
+        cout << "OPERATOR <<" << endl;
+        cout << ic1 << endl;
+        cout << ic2 << endl;
+        cout << "OPERATOR ++" << endl;
+        ++ic1;
+        cout << ic1 << endl;
+        cout << "OPERATOR +" << endl;
+        IceCream ic3 = ic2 + "chocolate";
+        cout << ic3 << endl;
+    } else if(testCase == 2) {
+        cout << "====== TESTING IceCream CONSTRUCTORS ======" << endl;
+        cin.getline(name,100);
+        cin.getline(ingr,100);
+        cin >> price;
+        cout << "CONSTRUCTOR" << endl;
+        IceCream ic1(name, ingr, price);
+        cout << ic1 << endl;
+        cout << "COPY CONSTRUCTOR" << endl;
+        IceCream ic2(ic1);
+        cin.get();
+        cin.getline(name,100);
+        ic2.setName(name);
+        cout << ic1 << endl;
+        cout << ic2 << endl;
+        cout << "OPERATOR =" << endl;
+        ic1 = ic2;
+        cin.getline(name,100);
+        ic2.setName(name);
+        cout << ic1 << endl;
+        cout << ic2 << endl;
+        
+        cin >> discount;
+        ic1.setDiscount(discount);
+ 
+
+    } else if(testCase == 3) {
+        cout << "====== TESTING IceCreamShop ======" << endl;
+        char icsName[50];
+        cin.getline(icsName,100);
+        cout << "CONSTRUCTOR" << endl;
+        IceCreamShop ics(icsName);
+        int n;
+        cin >> n;
+        cout << "OPERATOR +=" << endl;
+        for(int i = 0; i < n; ++i) {
+            cin.get();
+            cin.getline(name,100);
+        	cin.getline(ingr,100);
+            cin >> price;
+            IceCream ic(name, ingr, price);
+            ics += ic;
+        }
+        cout << ics;
+    } else if(testCase == 4) {
+        cout << "====== TESTING IceCreamShop CONSTRUCTORS ======" << endl;
+        char icsName[50];
+        cin.getline(icsName,100);
+        IceCreamShop ics(icsName);
+        int n;
+        cin >> n;
+        for(int i = 0; i < n; ++i) {
+            cin.get();
+            cin.getline(name,100);
+        	cin.getline(ingr,100);
+            cin >> price;
+            IceCream ic(name, ingr, price);
+            ics += ic;
+        }
+        IceCream x("FINKI fruits", "strawberry ice cream, raspberry ice cream, blueberry ice cream", 60);
+        IceCreamShop icp = ics;
+        ics+=x;
+        cout << ics << endl;
+        cout << icp << endl;
+    }
+
+
+    return 0;
+}
+
+20.------------------------------------------------------------------------------------------------------
+int main()
+{
+	int i, j, n, broj;
+	doktor md[200];
+	scanf("%d", &n);
+	for (i = 0; i < n; i++){
+		//ime na doktor
+		scanf("%s", &md[i].ime);
+		//broj na pacienti
+		scanf("%d", &md[i].br_pac);
+		//cena na pregled
+		scanf("%f", &md[i].cena);
+
+		for (j = 0; j < md[i].br_pac; j++){
+			scanf("%s", &md[i].niza[j].ime);
+			scanf("%d", &md[i].niza[j].zdrastveno);
+			scanf("%d", &md[i].niza[j].pregledi);
+		}
+	}
+	najuspesen_doktor(md, n);
+
+	return 0;
+}
+
+21.------------------------------------------------------------------------------------------------------
+int main()
+{
+    int i, j, n;
+    char zemja[15];
+	Tancer tanceri[5];
+    cin >> n;
+    for(i = 0; i < n; i++){
+        cin >> tanceri[i].ime;
+        cin >> tanceri[i].prezime;
+        for(j = 0; j < 3; j++){
+        	cin >> tanceri[i].niza[j].ime;
+            cin >> tanceri[i].niza[j].zemja;
+        }
+    }
+    cin >> zemja;
+    tancuvanje(tanceri, n, zemja);
+	return 0;
+}
+
+22.------------------------------------------------------------------------------------------------------
+int main() {
+
+    Narachka narachka;
+
+    // внеси го името лицето кое ја прави нарачката
+    // внеси го бројот на порачани производи во нарачката
+    
+    int i;
+    //за секој од нарачаните производи се внесуваат информации
+    for (i = 0; i < narachka.n; ++i) {
+        // внеси код
+        // внеси единицчна цена
+        // внеси број на производи во магацин
+    }
+    //за секој производ се внесува колку такви производи се порачани во нарачката
+    int j;
+    for (j = 0; j < narachka.n; ++j) {
+       //се внесува број на производи во нарачката
+    }
+
+
+    // повик на функцијата pecatiFaktura
+
+ 
+    return 0;
+}

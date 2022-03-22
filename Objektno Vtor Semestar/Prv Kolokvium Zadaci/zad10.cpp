@@ -2,33 +2,21 @@
 #include <cstring>
 using namespace std;
 
-struct Player{
-    char playerName[15]; int level, points;
-};
-
-struct ComputerGame{
-    char gameName[20]; Player arr[30]; int playerNum;
-};
+struct Player{ char playerName[15]; int level, points; };
+struct ComputerGame{ char gameName[20]; Player arr[30]; int playerNum; };
 
 void bestPlayer(ComputerGame *array, int num){
     int max=0;
-    for(int i=0;i<num;i++){
-        if(array[i].playerNum > array[max].playerNum){ max = i;}
-    }
+    for(int i=0;i<num;i++){ array[i].playerNum > array[max].playerNum? max = i:0;}
 
     ComputerGame mostPopular = array[max]; int max2=0;
 
     for(int i=0;i<mostPopular.playerNum;i++){
-        if(mostPopular.arr[i].points > mostPopular.arr[max2].points){
-            max2 = i;
-        }
+        if(mostPopular.arr[i].points > mostPopular.arr[max2].points){ max2 = i; }
         else if(mostPopular.arr[i].points == mostPopular.arr[max2].points){
-            if(mostPopular.arr[i].level > mostPopular.arr[max2].level){
-                max2 = i;
-            }
+            mostPopular.arr[i].level > mostPopular.arr[max2].level?max2 = i:0;
         }
     }
-
     cout<<"Najdobar igrac e igracot so korisnicko ime "<<mostPopular.arr[max2].playerName<<" koj ja igra igrata "<<mostPopular.gameName;
 }
 

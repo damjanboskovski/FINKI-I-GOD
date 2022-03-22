@@ -8,12 +8,16 @@ class StockRecord{
         double price = 0.00,currentPrice = 0.00; int stocks = 0;
     public:
         StockRecord(){};
-        StockRecord(char id1[50], char company1[50],double price1, int stocks1){strcpy(id,id1); strcpy(company,company1); price = price1; stocks = stocks1;}
+        StockRecord(char *i, char *c,double p, int s){strcpy(id,i); strcpy(company,c); price = p; stocks = s;}
         ~StockRecord(){};
 
-        StockRecord &operator=(const StockRecord &other){ strcpy(id, other.id); strcpy(company,other.company); price = other.price; stocks = other.stocks; currentPrice = other.currentPrice; }
+        StockRecord &operator=(const StockRecord &other){ 
+            strcpy(id, other.id); strcpy(company,other.company); price = other.price; stocks = other.stocks; currentPrice = other.currentPrice; 
+        }
 
-        friend ostream &operator<<(ostream &out, const StockRecord &other){ out<<other.company<<" "<<other.stocks<<" "<<other.price<<" "<<other.currentPrice<<" "<<other.profit()<<endl; return out; }
+        friend ostream &operator<<(ostream &out, const StockRecord &other){ 
+            out<<other.company<<" "<<other.stocks<<" "<<other.price<<" "<<other.currentPrice<<" "<<other.profit()<<endl; return out; 
+        }
 
         double getPrice(){return price;} double getCurrentPrice(){return currentPrice;}
         int getStocks(){return stocks;} void setNewPrice(double c){currentPrice = c;}
@@ -23,16 +27,20 @@ class StockRecord{
 
 class Client{
     private:
-        char name[60] = {'\0'};
-        int id = 0,num=0;
-        StockRecord *companies;
+        char name[60] = {'\0'}; int id = 0,num=0; StockRecord *companies;
     public:
-        Client()=default; Client(char name1[60],int id1){strcpy(name,name1);id=id1;num=0;companies = new StockRecord[50];} ~Client(){};
+        Client(){}; 
+        Client(char *n,int id1){strcpy(name,n);id=id1;num=0;companies = new StockRecord[50];} 
+        ~Client(){};
 
         Client operator+=(StockRecord &other){companies[num]=other; num++;}
         friend ostream &operator<<(ostream &out, Client &other){
             out << other.id << " " << other.totalValue() << endl;
-            for(int i=0;i<other.num;i++){ out << other.companies[i].getCompany()<<" "<<other.companies[i].getStocks()<<" "<<other.companies[i].getPrice()<<" "<<other.companies[i].getCurrentPrice()<<" "<<other.companies[i].profit() <<endl; } return out;}
+            for(int i=0;i<other.num;i++){ 
+                out << other.companies[i].getCompany()<<" "<<other.companies[i].getStocks()
+                <<" "<<other.companies[i].getPrice()<<" "<<other.companies[i].getCurrentPrice()<<" "<<other.companies[i].profit() <<endl; } 
+            return out;
+        }
         
         double totalValue(){double sum=0; for(int i=0;i<num;i++){sum+=companies[i].value();} return sum;}
 };
@@ -49,8 +57,7 @@ int main(){
     }
     else if(test == 2){
         cout << "=====TEST NA METODITE I OPERATOR << OD KLASATA StockRecord=====" << endl;
-    	char id[12], company[50]; double price, newPrice; int n, shares;
-        cin >> n;
+    	char id[12], company[50]; double price, newPrice; int n, shares; cin >> n;
         for(int i = 0; i < n; ++i){
         	cin>>id>>company>>price>>newPrice>>shares;
             StockRecord sr(id, company, price, shares);
@@ -61,9 +68,7 @@ int main(){
     else if(test == 3){
     	cout << "=====TEST NA KLASATA Client=====" << endl;
         char companyID[12], companyName[50], clientName[50];
-        int clientID, n, shares;
-        double oldPrice, newPrice;
-        bool flag = true;
+        int clientID, n, shares; double oldPrice, newPrice; bool flag = true;
         cin>>clientName>>clientID>>n;
         Client c(clientName, clientID);
         cout << "Konstruktor OK" << endl;
