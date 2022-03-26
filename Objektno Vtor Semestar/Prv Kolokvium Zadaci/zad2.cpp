@@ -37,10 +37,10 @@ class ListContainer{
             }
             num=n1; tries=t1;
         }
-        ~ListContainer(){delete[] array;};
+        ~ListContainer(){if(this->array != nullptr){ array = nullptr; delete[] array;}};
 
         ListContainer &operator=(const ListContainer &other){
-            delete[] array; array = new List[50];
+            delete[] array; array = new List[num];
             for(int i=0;i<other.num;i++){array[i]=other.array[i];}
             num = other.num; tries = other.tries; return *this;
         }

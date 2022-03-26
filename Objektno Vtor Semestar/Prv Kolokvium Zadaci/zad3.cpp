@@ -33,7 +33,7 @@ class Client{
         Client(char *n,int id1){strcpy(name,n);id=id1;num=0;companies = new StockRecord[50];} 
         ~Client(){};
 
-        Client operator+=(StockRecord &other){companies[num]=other; num++;}
+        Client operator+=(StockRecord &other){companies[num++]=other;}
         friend ostream &operator<<(ostream &out, Client &other){
             out << other.id << " " << other.totalValue() << endl;
             for(int i=0;i<other.num;i++){ 

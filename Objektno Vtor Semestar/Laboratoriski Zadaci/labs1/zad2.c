@@ -1,14 +1,8 @@
 #include <stdio.h>
 
-typedef struct tocka{
-    double x;
-    double y;
-}tocka;
+typedef struct tocka{ double x, y; }tocka;
 
-typedef struct otsecka{
-    tocka t1;
-    tocka t2;
-}otsecka;
+typedef struct otsecka{ tocka t1; tocka t2;}otsecka;
 
 int se_secat(otsecka o1,otsecka o2){
     double c1=(o1.t2.y - o1.t1.y)/(o1.t2.x - o1.t1.x);
