@@ -28,7 +28,7 @@ class OperativenSistem{
         ~OperativenSistem(){delete[] osName; osName = nullptr;}
 
         float getVer()const{return this->osVersion;}
-        void pecati(){cout<<"Ime: "<<this->osName<<" Verzija: "<<this->osVersion<<" Tip: "<<this->type<<" Golemina:"<<this->osSize<<"GB"<<endl;}
+        void pecati(){cout<<"Ime: "<<this->osName<<" Verzija: "<<this->osVersion<<" Tip: "<<this->type<<" Golemina:"<<this->osSize<<"GB"<<endl;} 
         bool verComp(const OperativenSistem &os){ return (this->osVersion == os.osVersion);}
         bool famComp(const OperativenSistem &os){ return (strcmp(this->osName,os.osName) == 0 && this->type == os.type);}
         bool isEqual(const OperativenSistem &os){ return (famComp(os) && verComp(os) && this->osSize == os.osSize);}
