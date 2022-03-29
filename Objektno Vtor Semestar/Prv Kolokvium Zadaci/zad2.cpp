@@ -29,22 +29,26 @@ class List{
 class ListContainer{
     private: List *array; int num=0,tries=0;
     public:
-        ListContainer(){array = new List[this->num];};
-        ListContainer(List *array1, int n1, int t1){
-            array = new List[this->num]; 
-            for(int i=0;i<num;i++){
-                array[i] = array1[i];
+        ListContainer(){ array = nullptr; }
+
+        ListContainer (const ListContainer &other){
+            if(this != &other){
+                delete[] array; array = new List[num];
+                for(int i=0;i<other.num;i++){array[i]=other.array[i];}
+                num = other.num; tries = other.tries;
             }
-            num=n1; tries=t1;
         }
-        ~ListContainer(){if(this->array != nullptr){ array = nullptr; delete[] array;}};
 
         ListContainer &operator=(const ListContainer &other){
-            delete[] array; array = new List[num];
-            for(int i=0;i<other.num;i++){array[i]=other.array[i];}
-            num = other.num; tries = other.tries; return *this;
+            if(this != &other){
+                delete[] array; array = new List[num];
+                for(int i=0;i<other.num;i++){array[i]=other.array[i];}
+                num = other.num; tries = other.tries;
+            } return *this;
         }
-        
+
+        ~ListContainer(){if(this->array != nullptr){ array = nullptr; delete[] array;}};
+
         void print(){
             if(num == 0){cout << "The list is empty" << endl;}
             else{
@@ -55,7 +59,8 @@ class ListContainer{
 
         void addNewList(List array1){ tries++;
             for(int i=0;i<num;i++){ if(array[i].sum()==array1.sum()){ return;} }
-            array[num] = array1; num++; 
+            List *temp = new List[num+1]; for(int i = 0;i<num;i++){if(array[i].sum()!=array1.sum()){ temp[i]=array[i];}}
+            temp[num++] = array1; delete[] this->array; this->array = temp; 
         }
 
         int sum(){ int sum1=0; for(int i=0;i<num;i++){sum1+=array[i].sum();}return sum1; }
