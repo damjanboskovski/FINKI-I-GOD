@@ -1,37 +1,45 @@
 #include <iostream>
-#include <cstring>
 #include <string.h>
 using namespace std;
 
-enum tip{pop, rap, rock};
+enum tip{pop, rap, rok};
 
 class Pesna{
     private:
-        char ime[50]; int minuti; tip kojtip;
+        char *songName{nullptr}; int time{0}; tip kojtip{(tip)0};
     public:
-        Pesna(){};
-        Pesna(char *i,int m,tip k){ strcpy(this->ime,i); this->minuti = m; this->kojtip = k; }
-        ~Pesna(){};
-        void pecati(){cout<<"\n\""<<ime<<"\"-"<<minuti<<"min";}
-        tip getTip(){ return this->kojtip; } int getMinuti(){return this->minuti;}
+        Pesna(){ this->songName = nullptr; }
+        Pesna(char *n, int t, tip k):Pesna(){
+            this->songName = new char[strlen(n)+1]; strcpy(this->songName,n);
+            this->time = t; this->kojtip = k;
+        }
+        Pesna(Pesna &other){
+            if(this != &other){
+                this->songName = new char[strlen(other.songName)+1];
+                strcpy(this->songName,other.songName); this->time = other.time; this->kojtip = other.kojtip;
+            }
+        }
+        ~Pesna(){ delete[] this->songName; this->songName = nullptr; }
+
+        void pecati(){ cout<<"\""<<this->songName<<"\"-"<<this->time<<"min"<<endl; }
+        int getTime(){ return this->time; } tip getTip(){ return this->kojtip; }
 };
 
-class CD
-{
+class CD{
     private:
-        Pesna p[10]; int pesni, minuti;
+        Pesna arr[10]; int songNum, maxTime;
     public:
         CD(){};
-        CD(int minuti1){ minuti = minuti1;pesni = 0;}
+        CD(int t){ this->maxTime = t; this->songNum = 0; }
         ~CD(){};
-        void dodadiPesna(Pesna p1){
-            int moment = 0;
-            for (int i = 0; i < pesni; i++) {moment += p[i].getMinuti();}
-            pesni < 10 && moment + p1.getMinuti() <= minuti ? p[pesni] = p1, pesni++:0;
+        
+        void dodadiPesna(Pesna p){
+            int temp = 0; for(int i = 0; i<this->songNum; i++){ temp += arr[i].getTime(); }
+            if(songNum < 10 && (temp + p.getTime() <= maxTime)){ arr[songNum++] = p; }
         }
 
-        void pecatiPesniPoTip(tip t){ for (int i = 0; i < pesni; i++){if (p[i].getTip() == t) p[i].pecati();} }
-        Pesna getPesna(int i){return p[i];}  int getBroj(){return pesni;}
+        void pecatiPesniPoTip(tip t){ for(int i=0; i<this->songNum; i++){ if(arr[i].getTip() == t) { arr[i].pecati(); } }}
+        Pesna getPesna(int i){ return this->arr[i]; } int getBroj(){ return this->songNum; }
 };
 
 int main()
@@ -41,7 +49,7 @@ int main()
 
     if (testCase == 1){
         cout << "===== Testiranje na klasata Pesna ======";
-        cin >> ime >> minuti >> kojtip; 
+        cin >> ime >> minuti >> kojtip;
         Pesna p(ime, minuti, (tip) kojtip); p.pecati();
     }
     else if (testCase == 2){
@@ -64,15 +72,13 @@ int main()
     }
     else if (testCase == 4) {
         cout << "===== Testiranje na metodot pecatiPesniPoTip() od klasata CD ======";
-        CD omileno(20);
-        cin >> n;
+        CD omileno(20); cin >> n;
         for (int i = 0; i < n; i++)
         {
             cin >> ime >> minuti >> kojtip;
             Pesna p(ime, minuti, (tip) kojtip); omileno.dodadiPesna(p);
         }
         cin >> kojtip; omileno.pecatiPesniPoTip((tip) kojtip);
-
     }
     else if (testCase == 5)
     {
