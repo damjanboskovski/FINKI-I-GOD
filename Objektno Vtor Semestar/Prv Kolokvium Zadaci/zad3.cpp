@@ -1,53 +1,48 @@
-#include <iostream>
-#include <cstring>
+#include<iostream>
+#include<cstring>
 using namespace std;
 
 class StockRecord{
     private:
-        char id[12] = {'\0'}, company[50] = {'\0'};
-        double price = 0.00,currentPrice = 0.00; int stocks = 0;
+        char id[12],name[50]; double buyPrice{0.00}, currentPrice{0.00}; int stockNum{0};
     public:
         StockRecord(){};
-        StockRecord(char *i, char *c,double p, int s){strcpy(id,i); strcpy(company,c); price = p; stocks = s;}
+        StockRecord(char *i, char *n, double p, int s) { strcpy(this->id,i); strcpy(this->name,n); this->buyPrice = p; this->stockNum = s; }
         ~StockRecord(){};
 
-        StockRecord &operator=(const StockRecord &other){ 
-            strcpy(id, other.id); strcpy(company,other.company); price = other.price; stocks = other.stocks; currentPrice = other.currentPrice; 
-        }
+        friend ostream &operator<<(ostream &out, StockRecord &other){
+            out<<other.name<<" "<<other.stockNum<<" "<<other.buyPrice<<" "<<other.currentPrice<<" "<<other.profit()<<endl;return out;}
 
-        friend ostream &operator<<(ostream &out, const StockRecord &other){ 
-            out<<other.company<<" "<<other.stocks<<" "<<other.price<<" "<<other.currentPrice<<" "<<other.profit()<<endl; return out; 
-        }
-
-        double getPrice(){return price;} double getCurrentPrice(){return currentPrice;}
-        int getStocks(){return stocks;} void setNewPrice(double c){currentPrice = c;}
-        double value(){return stocks * currentPrice;} double profit()const{return stocks * (currentPrice - price);}
-        char *getCompany(){return company;}      
+        void setNewPrice(double c){ this->currentPrice = c; }
+        double value(){ return this->stockNum * currentPrice; } double profit()const{ return this->stockNum * (this->currentPrice - this->buyPrice); }
 };
 
 class Client{
     private:
-        char name[60] = {'\0'}; int id = 0,num=0; StockRecord *companies;
+        char clientName[60]; int id{0}, num{0}; StockRecord *arr{nullptr};
     public:
-        Client(){}; 
-        Client(char *n,int id1){strcpy(name,n);id=id1;num=0;companies = new StockRecord[50];} 
-        ~Client(){};
+        Client(){};
+        Client(char *n, int i) { strcpy(this->clientName,n); this->id = i; }
 
-        Client operator+=(StockRecord &other){companies[num++]=other;}
-        friend ostream &operator<<(ostream &out, Client &other){
-            out << other.id << " " << other.totalValue() << endl;
-            for(int i=0;i<other.num;i++){ 
-                out << other.companies[i].getCompany()<<" "<<other.companies[i].getStocks()
-                <<" "<<other.companies[i].getPrice()<<" "<<other.companies[i].getCurrentPrice()<<" "<<other.companies[i].profit() <<endl; } 
-            return out;
+        Client &operator+=(const StockRecord &other)
+        {
+            StockRecord *temp = new StockRecord[this->num+1];
+            for(int i=0; i<this->num; i++){ temp[i] = arr[i]; }
+            temp[num++] = other; delete[] this->arr; arr = temp;
         }
-        
-        double totalValue(){double sum=0; for(int i=0;i<num;i++){sum+=companies[i].value();} return sum;}
+
+        friend ostream &operator<<(ostream &out, Client &other){
+            out<<other.id<<" "<<other.totalValue()<<endl;
+            for(int i=0; i<other.num; i++) { out<<other.arr[i]; } return out; }
+
+        ~Client(){ delete[] this->arr; arr = nullptr; }
+
+        double totalValue(){ double sum=0.00; for(int i=0; i<this->num; i++){ sum+=arr[i].value(); } return sum; }
 };
 
 int main(){
     int test; cin >> test;
-    
+
     if(test == 1){
     	double price;
         cout << "=====TEST NA KLASATA StockRecord=====" << endl;
@@ -79,7 +74,6 @@ int main(){
             if(flag){cout << "Operator += OK" << endl;flag = false;}
         }
         cout<<c<<"Operator << OK"<<endl;
-    } 
+    }
     return 0;
-
 }
