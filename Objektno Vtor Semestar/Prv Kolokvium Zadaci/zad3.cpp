@@ -10,7 +10,7 @@ class StockRecord{
         StockRecord(char *i, char *n, double p, int s) { strcpy(this->id,i); strcpy(this->name,n); this->buyPrice = p; this->stockNum = s; }
         ~StockRecord(){};
 
-        friend ostream &operator<<(ostream &out, StockRecord &other){
+        friend ostream &operator<<(ostream &out, const StockRecord &other){
             out<<other.name<<" "<<other.stockNum<<" "<<other.buyPrice<<" "<<other.currentPrice<<" "<<other.profit()<<endl;return out;}
 
         void setNewPrice(double c){ this->currentPrice = c; }
