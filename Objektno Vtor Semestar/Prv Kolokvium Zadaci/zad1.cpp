@@ -32,7 +32,6 @@ class CD{
         CD(){};
         CD(int t){ this->maxTime = t; this->songNum = 0; }
         ~CD(){};
-        
         void dodadiPesna(Pesna p){
             int temp = 0; for(int i = 0; i<this->songNum; i++){ temp += arr[i].getTime(); }
             if(songNum < 10 && (temp + p.getTime() <= maxTime)){ arr[songNum++] = p; }
