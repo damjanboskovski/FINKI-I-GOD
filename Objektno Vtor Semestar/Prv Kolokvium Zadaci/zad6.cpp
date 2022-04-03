@@ -2,25 +2,20 @@
 #include <cstring>
 using namespace std;
 
-struct Voz{ char direction[50]; double km; int passenger_Num; };
-struct ZeleznickaStanica{ char city[20]; Voz v[30]; int train_Num; };
+struct Train{ char path[50]; double length; int passengerNum; };
+struct TrainStation{ char city[20]; Train arr[30]; int trainNum; };
 
-void najkratkaRelacija(ZeleznickaStanica *arr,int num, char *c){
-    float min=0; int i1=0,j1=0;
-    for(int i=0;i<num;i++){
-        if(strcmp(arr[i].city,c)==0){
-            for(int j=0;j<arr[i].train_Num;j++){
-                min>=arr[i].v[j].km?min=arr[i].v[j].km,i1=i,j1=j:min=arr[i].v[j].km;} }
-    }
-    cout<<"Najkratka relacija: "<<arr[i1].v[j1].direction<<" ("<<arr[i1].v[j1].km<<" km)";
+void shortestPath(TrainStation *ts, int n, char *city){
+    double minDestination=0; int pos1=0, pos2=0;
+    for(int i=0; i<n; i++){ if(strcmp(ts[i].city,city)==0){
+            for(int j=0; j<ts[i].trainNum; j++){ minDestination >= ts[i].arr[j].length?minDestination = ts[i].arr[j].length,pos1 = i, pos2 = j:minDestination = ts[i].arr[j].length; } } }
+    cout<<"Najkratkata relacija: "<<ts[pos1].arr[pos2].path<<" ("<<ts[pos1].arr[pos2].length<<" km)";
 }
-int main(){
-    int n; cin>>n;
 
-    ZeleznickaStanica zStanica[100];
-    for (int i=0;i<n;i++){ cin>>zStanica[i].city>>zStanica[i].train_Num;
-        for(int j=0;j<zStanica[i].train_Num;j++){ cin>>zStanica[i].v[j].direction>>zStanica[i].v[j].km>>zStanica[i].v[j].passenger_Num; }
-    }
-    char grad[25]; cin>>grad; najkratkaRelacija(zStanica,n,grad);
-	return 0;
+int main(){
+    int num; cin>>num; TrainStation tStation[100];
+    for(int i=0; i<num; i++){ cin>>tStation[i].city>>tStation[i].trainNum;
+        for(int j=0; j<tStation[i].trainNum; j++){ cin>>tStation[i].arr[j].path>>tStation[i].arr[j].length>>tStation[i].arr[j].passengerNum; } }
+    char city[25]; cin>>city; shortestPath(tStation,num,city);
+    return 0;
 }
