@@ -2,84 +2,66 @@
 #include <cstring>
 using namespace std;
 
-class Pizza{
+class Pica{
     private:
-        char pizza_name[15], *ingredients; int price, discount;
+        char name[15], *ingredients{nullptr}; int price{0}, discount{0};
     public:
-        Pizza(){ ingredients = nullptr; }
-
-        Pizza(char *n, int p, char *i, int d){
-            strcpy(pizza_name,n); ingredients = new char[strlen(i)+1]; strcpy(this->ingredients,i);
-            this->price = p; this->discount = d; }
-
-        Pizza(const Pizza &p){ strcpy(pizza_name,p.pizza_name); price=p.price; discount=p.discount;
-            ingredients = new char[1024]; strcpy(ingredients,p.ingredients); }
-
-        ~Pizza(){ delete[] ingredients; };
-
-        Pizza &operator = (Pizza &p){
-            if(this != &p){ strcpy(pizza_name, p.pizza_name); price=p.price; discount=p.discount;
-            delete[]ingredients; ingredients = new char[1024]; strcpy(ingredients,p.ingredients); } return *this; }
-
-        void print(){ cout<<pizza_name<<" - "<<ingredients<<", "<<price; }
-        bool is_equal(Pizza p){ return (!strcmp(ingredients,p.ingredients)); }
-
-        int getPrice(){ return price; } int getDiscount(){ return discount; }
-};
-
-class Pizzeria{
-    private:
-        char name[15]; Pizza *arr; int num;
-    public:
-        Pizzeria(const char *na){ strcpy(name,na); arr=nullptr; num=0; }
-
-        Pizzeria(char *na, Pizza *a, int n){ strcpy(this->name,na); this->num=n;
-            arr = new Pizza[n]; for(int i=0; i<n; i++){ arr[i] = a[i]; } }
-
-        Pizzeria(const Pizzeria &p){ strcpy(this->name,p.name); this->num=p.num; arr = new Pizza[num];
-            for(int i=0; i<num; i++){ arr[i] = p.arr[i]; } }
-
-        Pizzeria &operator = (const Pizzeria &p){
-        if(this != &p){ strcpy(this->name,p.name); num = p.num; delete[] arr; arr = new Pizza[num];
-        for(int i=0; i<num; i++){ arr[i] = p.arr[i]; } } return *this; }
-
-        ~Pizzeria(){ delete[] arr; }
-
-        Pizzeria &operator += (Pizza &adder){
-        bool isEqual = false; for(int i=0; i<num; i++){ if(arr[i].is_equal(adder)){ isEqual=true; break; } }
-        if(!isEqual){ Pizza *tmp = new Pizza[num+1]; for(int i=0; i<num; i++){ tmp[i] = arr[i]; }
-            tmp[num++] = adder; delete[]arr; arr=tmp; } return *this; }
-
-        const char*getName(){ return name; } void setName(const char *n){ strcpy(name,n); }
-
-        void print_w_discount(){
-        for (int i=0; i <num; i++){
-            if (arr[i].getDiscount() != 0){ arr[i].print();
-            cout<<" "<<arr[i].getPrice()*(1-arr[i].getDiscount()/100.0)<<endl; } } 
+        Pica(){ this->ingredients = nullptr; }
+        Pica(char *n, int p, char *i, int d){
+            strcpy(this->name,n); this->price = p; this->discount = d;
+            this->ingredients = new char[strlen(i)+1]; strcpy(this->ingredients,i);
         }
+        ~Pica(){}
+
+        void pecati(){ cout<<this->name<<" - "<<this->ingredients<<", "<<this->price; }
+        bool istiSe(Pica p){ return (!strcmp(ingredients,p.ingredients));}
+        int getDiscount(){ return this->discount; } int getPrice(){ return this->price; }
 };
 
-int main()
-{
-	int n; char name[15]; cin>>name>>n; Pizzeria p1(name);
+class Picerija{
+    private:
+        char name[15]; Pica *arr{nullptr}; int num{0};
+    public:
+        Picerija(){ arr = nullptr; }
+        Picerija(char *n){
+            strcpy(this->name,n); arr = new Pica[this->num];
+        }
+        Picerija(const Picerija &other){
+            if(this != &other){
+                strcpy(this->name,other.name); this->num = other.num;
+                delete[] arr; arr = new Pica[other.num]; for(int i=0; i<num; i++){ arr[i] = other.arr[i];}
+            }
+        }
+        ~Picerija(){ delete[] arr; arr = nullptr; }
+        Picerija &operator+=(const Pica &p){
+            bool isEqual = false; for(int i=0; i<num; i++){ if(arr[i].istiSe(p)){ isEqual = true; break; } }
+            if(!isEqual){ Pica *temp = new Pica[num+1]; for(int i=0; i<num; i++){ temp[i] = arr[i]; }
+            temp[num++] = p; delete[] arr; arr = temp; } return *this;
+        }
+        void piciNaPromocija(){
+            for(int i=0; i<num; i++){
+                if(arr[i].getDiscount() != 0){ arr[i].pecati();
+                cout<<" "<<arr[i].getPrice()*(1 - arr[i].getDiscount()/100.00)<<endl; } }
+        }
+        void setIme(char *n){ strcpy(name,n); } char *getIme(){ return this->name; }
+};
 
+int main() {
+
+	int n; char ime[15]; cin >> ime >> n; Picerija p1(ime);
 	for (int i = 0; i < n; i++){
-		char pizza_name[100], ingredients[100]; int price, discount;
-		cin.get(); cin.getline(pizza_name, 100); cin>>price;
-		cin.get(); cin.getline(ingredients, 100); cin>>discount;
-
-		Pizza p(pizza_name, price, ingredients, discount); p1+=p;
+		char imp[100], sostojki[100];; int cena, popust;
+		cin.get(); cin.getline(imp, 100); cin >> cena;
+		cin.get(); cin.getline(sostojki, 100); cin >> popust;
+		Pica p(imp, cena, sostojki, popust); p1+=p;
 	}
+	
+	Picerija p2 = p1; char imp[100], sostojki[100]; int cena, popust;
+	cin >> ime; p2.setIme(ime); cin.get(); cin.getline(imp, 100);
+	cin >> cena; cin.get(); cin.getline(sostojki, 100); cin >> popust;
+	Pica p(imp, cena, sostojki, popust); p2+=p;
+	cout << p1.getIme() << endl << "Pici na promocija:" << endl; p1.piciNaPromocija();
+	cout << p2.getIme() << endl << "Pici na promocija:" << endl; p2.piciNaPromocija();
 
-	Pizzeria p2 = p1; char pizza_name[100], ingredients[100]; int price, discount;
-
-	cin>>name; p2.setName(name);
-	cin.get(); cin.getline(pizza_name, 100); cin>>price;
-	cin.get(); cin.getline(ingredients, 100); cin>>discount;
-
-	Pizza p(pizza_name, price, ingredients, discount); p2+=p;
-
-	cout<<p1.getName()<<endl<<"Pici na promocija:"<<endl; p1.print_w_discount();
-	cout<<p2.getName()<<endl<<"Pici na promocija:"<<endl; p2.print_w_discount(); 
-    return 0;
+	return 0;
 }
