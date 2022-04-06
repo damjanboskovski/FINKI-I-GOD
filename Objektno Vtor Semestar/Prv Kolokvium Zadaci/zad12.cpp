@@ -9,9 +9,20 @@ class Pica{
         Pica(){ this->ingredients = nullptr; }
         Pica(char *n, int p, char *i, int d){
             strcpy(this->name,n); this->price = p; this->discount = d;
-            this->ingredients = new char[strlen(i)+1]; strcpy(this->ingredients,i);
+            delete[] this->ingredients; this->ingredients = new char[strlen(i)+1]; strcpy(this->ingredients,i);
         }
-        ~Pica(){}
+        Pica(const Pica &other){
+            if(this != &other){
+                strcpy(this->name,other.name); this->price = other.price; this->discount = other.discount;
+                delete[] this->ingredients; this->ingredients = new char[strlen(other.ingredients)+1]; strcpy(this->ingredients,other.ingredients); }
+        }
+        Pica &operator=(const Pica &other){
+            if(this != &other){
+                strcpy(this->name,other.name); this->price = other.price; this->discount = other.discount;
+                delete[] this->ingredients; this->ingredients = new char[strlen(other.ingredients)+1]; strcpy(this->ingredients,other.ingredients);
+            } return *this;
+        }
+        ~Pica(){ delete[] this->ingredients; this->ingredients = nullptr; }
 
         void pecati(){ cout<<this->name<<" - "<<this->ingredients<<", "<<this->price; }
         bool istiSe(Pica p){ return (!strcmp(ingredients,p.ingredients));}
@@ -27,10 +38,8 @@ class Picerija{
             strcpy(this->name,n); arr = new Pica[this->num];
         }
         Picerija(const Picerija &other){
-            if(this != &other){
                 strcpy(this->name,other.name); this->num = other.num;
-                delete[] arr; arr = new Pica[other.num]; for(int i=0; i<num; i++){ arr[i] = other.arr[i];}
-            }
+                delete[] arr; arr = new Pica[other.num]; for(int i=0; i<num; i++){ arr[i] = other.arr[i]; }
         }
         ~Picerija(){ delete[] arr; arr = nullptr; }
         Picerija &operator+=(const Pica &p){
@@ -55,7 +64,7 @@ int main() {
 		cin.get(); cin.getline(sostojki, 100); cin >> popust;
 		Pica p(imp, cena, sostojki, popust); p1+=p;
 	}
-	
+
 	Picerija p2 = p1; char imp[100], sostojki[100]; int cena, popust;
 	cin >> ime; p2.setIme(ime); cin.get(); cin.getline(imp, 100);
 	cin >> cena; cin.get(); cin.getline(sostojki, 100); cin >> popust;
