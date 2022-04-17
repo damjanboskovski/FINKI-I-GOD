@@ -61,7 +61,7 @@ int main()
     char ime[20]; float verzija, golemina; int tip;
 
     for (int i = 0; i<brojOperativniSistemi; i++){
-        cin>>ime>>verzija>>tip>>golemina;
+        cin>>ime>>verzija>>tip>>golemina; 
         OperativenSistem os = OperativenSistem(ime, verzija, (Tip)tip, golemina);
         repozitorium.dodadi(os);
     }

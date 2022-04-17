@@ -1,77 +1,70 @@
-#include<iostream>
-#include<cstring>
+#include <iostream>
+#include <cstring>
 using namespace std;
 
-enum Extension{ txt,pdf,exe }; char enumConv[3][4] = {"pdf","txt","exe"};
+enum Extension{ pdf, txt, exe }; char extConv[3][4] = {"pdf","txt","exe"};
 
 class File{
     private:
-        char *fileName,*ownerName; Extension ext; int fileSize;
+        char *fileName{nullptr}, *ownerName; Extension ext{(Extension)0}; int fileSize{0};
     public:
-        File(){ fileName = nullptr; ownerName = nullptr; }
-
-        File(char *n, char *o,int s, Extension ext){
+        File(){ this->fileName = nullptr; this->ownerName = nullptr; }
+        File(char *n, char *o, int f, Extension e){
             this->fileName = new char[strlen(n)+1]; strcpy(this->fileName,n);
             this->ownerName = new char[strlen(o)+1]; strcpy(this->ownerName,o);
-            this->fileSize = s; this->ext = ext;
+            this->fileSize = f; this->ext = e;
         }
-
-        File(const File &other) : File(other.fileName,other.ownerName,other.fileSize,other.ext){}
-
-        ~File(){};
-
+        File(const File &other){
+            if(this != &other){
+                this->fileName = new char[strlen(other.fileName)+1]; strcpy(this->fileName,other.fileName);
+                this->ownerName = new char[strlen(other.ownerName)+1]; strcpy(this->ownerName,other.ownerName);
+                this->fileSize = other.fileSize; this->ext = other.ext;
+            }
+        }
         File &operator=(const File &other){
-            this->fileName = new char[strlen(other.fileName)+1]; this->ownerName = new char[strlen(other.ownerName)+1];
-            strcpy(this->fileName,other.fileName); strcpy(this->ownerName,other.ownerName);
-            this->fileSize = other.fileSize; this->ext = other.ext;
-
-            return *this;
+            if(this != &other){
+                delete[] this->fileName; this->fileName = new char[strlen(other.fileName)+1]; strcpy(this->fileName,other.fileName);
+                delete[] this->ownerName; this->ownerName = new char[strlen(other.ownerName)+1]; strcpy(this->ownerName,other.ownerName);
+                this->fileSize = other.fileSize; this->ext = other.ext;
+            } return *this;
         }
+        ~File(){ delete[] this->fileName; this->fileName = nullptr; delete[] this->ownerName; this->ownerName = nullptr; }
 
-        void print(){
-            cout<<"File name: "<<this->fileName<<"."<<enumConv[this->ext]<<endl
-            <<"File owner: "<<this->ownerName<<endl<<"File size: "<<this->fileSize<<endl;
-        }
+        void print(){ cout<<"File name: "<<this->fileName<<"."<<extConv[this->ext]<<endl<<"File owner: "<<this->ownerName<<endl<<"File size: "<<this->fileSize<<endl; }
 
         bool equals(const File &other){
-            if((strcmp(this->fileName,other.fileName) == 0) && (strcmp(this->ownerName,other.ownerName)==0) && (this->ext == other.ext)){ return true;}
+            if ( (strcmp(this->fileName,other.fileName)==0) && (strcmp(this->ownerName,other.ownerName)==0) && (this->ext == other.ext)){ return true; }
             else return false;
         }
 
         bool equalsType(const File &other){
-            if((strcmp(this->fileName,other.fileName)==0) && this->ext == other.ext){return true;}
+            if ( (strcmp(this->fileName,other.fileName)==0) && (this->ext == other.ext) ) { return true; }
             else return false;
         }
 };
 
 class Folder{
     private:
-        char *folderName; int num; File *arr;
+        char *folderName{nullptr}; int num{0}; File *arr{nullptr};
     public:
-        Folder(){folderName = nullptr; this->num = 0; arr = nullptr;};
+        Folder(){ this->folderName = nullptr; this->arr = nullptr; }
         Folder(const char *name){
-            this->folderName = new char[strlen(name)+1]; strcpy(this->folderName,name);
-            this->num = 0; this->arr = new File[this->num];
+            delete[] this->folderName; this->folderName = new char[strlen(name)+1]; strcpy(this->folderName,name);
+            this->arr = new File[this->num];
         }
-        ~Folder(){delete[] this->folderName;delete[] this->arr;};
+        ~Folder(){ delete[] this->folderName; this->folderName = nullptr; delete[] this->arr; this->arr = nullptr; }
 
-        void print(){
-            cout<<"Folder name: "<<this->folderName<<endl;
-            for(int i=0;i<this->num;i++){ this->arr[i].print(); }
+        void print(){ cout<<"Folder name: "<<this->folderName<<endl; for(int i=0; i<this->num; i++){ this->arr[i].print(); } }
+
+        void add(const File &other){
+            File *temp = new File[this->num+1];
+            for(int i=0; i<this->num; i++){ temp[i] = this->arr[i]; }
+            temp[num++] = other; delete[] this->arr; this->arr = temp;
         }
 
-    void remove(File &sub){
-        for(int i=0; i<this->num; i++){
-            if(this->arr[i].equals(sub)){ --this->num;
-                for(int j=i; j<this->num; j++){
-                        this->arr[j] = this->arr[j+1]; } break; } } }
-
-        void add(const File &other){ 
-            File *tmp = new File[num+1]; 
-            for(int i=0; i<this->num; i++){ 
-                tmp[i] = this->arr[i]; 
-            }
-            tmp[num++] = other; delete[] this->arr; this->arr = tmp;
+        void remove(const File &other){
+            for(int i=0; this->num; i++){ if(this->arr[i].equals(other)){ --this->num;
+                for(int j=i; j<this->num; j++){ this->arr[j] = this->arr[j+1]; } break; } }
         }
 };
 
