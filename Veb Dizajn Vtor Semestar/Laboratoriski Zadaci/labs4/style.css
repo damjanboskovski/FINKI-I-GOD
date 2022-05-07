@@ -1,0 +1,280 @@
+* 
+{
+    font-family: 'Times New Roman', Times, serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.containerOne li, a {
+    font-weight: 500;
+    font-size: 18px;
+    color: rgb(124,124,124);
+    text-decoration: none;
+}
+
+.containerOne {
+    margin: 10px 10px 10px;
+}
+
+.containerOne header {
+    background-color: white;
+    border-bottom: 1px solid gray;
+    box-shadow: 0px 2px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10% 20px;
+}
+
+.logo {
+    cursor: pointer;
+}
+
+.topBar {
+    list-style: none;
+}
+
+.topBar li {
+
+    display: inline-block;
+    padding: 0px 20px;
+}
+
+.topBar li a {
+    transition: all 0.3 ease 0s;
+}
+
+.topBar li a:hover {
+    color: black;
+}
+    
+.topBar li a:active {
+    color: rgb(154, 239, 154);
+}
+
+.containerTwo {
+    margin: 10px 10px 10px;
+    background-color: #00008b;
+    color: white;
+}
+
+.containerTwo .content
+{
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.containerTwo .content {
+    padding: 0% 10%;
+    align-items: left;
+    margin-right: 0;
+}
+
+.containerTwo .content b {
+    max-width: 500px;
+}
+
+
+.containerThree {
+    margin: 10px 10px 10px;
+    background-color: #3cb371;
+    color: black;
+}
+
+.containerThree .content
+{
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+}
+
+.containerThree .content {
+    padding: 0% 10%;
+    align-items: left;
+}
+
+.containerThree .content .imageOne img {
+    max-width: 28%;
+    max-height: 28%;
+    float: left;
+    border-radius: 75px;
+    padding: 2% 2% 2%;
+}
+
+.containerThree .content .imageOne p {
+    padding: 3% 2% 2%;
+    text-align: justify;
+    font-size: 134%;
+    margin: auto;
+}
+
+.containerThree .contentTwo
+{
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+}
+
+.containerThree .contentTwo {
+    padding: 0% 10%;
+}
+
+.containerThree .contentTwo .imageTwo img {
+    max-width: 28%;
+    max-height: 28%;
+    float: right;
+    border-radius: 60px;
+    padding: 1% 2% 2%;
+}
+
+.containerThree .contentTwo .imageTwo p {
+    max-width: 72%;
+    max-height: 75%;
+    float: left;
+    padding: 2% 2% 2%;
+    text-align: justify;
+    font-size: 130%;
+    margin: auto;
+}
+
+.containerFour li, a {
+    font-weight: 500;
+    font-size: 18px;
+    color: rgb(124,124,124);
+    text-decoration: none;
+}
+
+.containerFour {
+    margin: 18px 10px 10px;
+}
+
+.containerFour header {
+    background-color: white;
+    border-top: 2px solid black;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 10%;
+}
+
+.aboutUsContainerOne {
+    margin: 10px 10px 10px;
+    background-color: #90ee90;
+    color: white;
+}
+
+.aboutUsContainerOne .content {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.aboutUsContainerOne .content #textOne {
+    padding: 10px 10%;
+    float: left;
+}
+
+.aboutUsContainerOne .content #textTwo {
+    padding: 10px;
+    padding-right: 200px;
+    padding-top: 10%;
+    padding-bottom: 5%;
+    float: right;
+    display: inline;
+    font-size: 20px;
+}
+
+.contactContainerOne{
+    margin: 10px 10px 10px;
+    background-color: #90ee90;
+    color: white;
+}
+
+.contactContainerOne .content{
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.aboutUsContainerOne .content #textOne{
+    padding: 10px 10%;
+    float: left;
+}
+
+.aboutUsContainerOne .content #textTwo{
+    padding: 10px;
+    padding-right: 200px;
+    padding-top: 10%;
+    padding-bottom: 5%;
+    float: right;
+    display: inline;
+    font-size: 20px;
+}
+
+.contactOne {
+    margin: 10px 10px 10px;
+    background-color: #9bed9b;
+    color: white;
+}
+
+.contactOne .content {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.contactOne .content #textOne {
+    padding: 10px 10%;
+    float: left;
+}
+
+.contactOne .content #textTwo {
+    padding: 10px;
+    padding-right: 200px;
+    padding-top: 10%;
+    padding-bottom: 5%;
+    float: right;
+    display: inline;
+    font-size: 20px;
+}
+
+.contactTwo{
+    background-color: rgb(211, 211, 211);
+    box-sizing: border-box;
+    margin: 10px 10px 10px;
+}
+
+.contactTwo .content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contactTwo .content .text{
+    color: black;
+    max-width: 50%;
+    padding-right: 2%;
+    float: left;
+    display: inline;
+    font-size: 130%;
+}
+
+.contactTwo .textTwo{
+    text-align: right;
+    padding-right: 11%;
+    font-size: 120%;
+}
+
+.contactTwo .content #map{
+    padding-top: 1%;
+    float: right;
+    display: inline;
+}
