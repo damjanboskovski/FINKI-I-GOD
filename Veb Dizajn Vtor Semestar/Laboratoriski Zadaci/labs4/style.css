@@ -37,13 +37,12 @@
 }
 
 .topBar li {
-
     display: inline-block;
-    padding: 0px 20px;
+    padding: 0px 30px;
 }
 
 .topBar li a {
-    transition: all 0.3 ease 0s;
+    transition: ease 0s;
 }
 
 .topBar li a:hover {
@@ -81,7 +80,7 @@
 
 .containerThree {
     margin: 10px 10px 10px;
-    background-color: #3cb371;
+    background-color: #319c61;
     color: black;
 }
 
@@ -101,14 +100,14 @@
     max-width: 28%;
     max-height: 28%;
     float: left;
-    border-radius: 75px;
+    border-radius: 50px;
     padding: 2% 2% 2%;
 }
 
 .containerThree .content .imageOne p {
     padding: 3% 2% 2%;
     text-align: justify;
-    font-size: 134%;
+    font-size: 89%;
     margin: auto;
 }
 
@@ -127,7 +126,7 @@
     max-width: 28%;
     max-height: 28%;
     float: right;
-    border-radius: 60px;
+    border-radius: 40px;
     padding: 1% 2% 2%;
 }
 
@@ -137,7 +136,7 @@
     float: left;
     padding: 2% 2% 2%;
     text-align: justify;
-    font-size: 130%;
+    font-size: 87%;
     margin: auto;
 }
 
@@ -220,7 +219,7 @@
 
 .contactOne {
     margin: 10px 10px 10px;
-    background-color: #9bed9b;
+    background-color: #9ce89c;
     color: white;
 }
 
@@ -234,6 +233,7 @@
 .contactOne .content #textOne {
     padding: 10px 10%;
     float: left;
+    font-size: 40px;
 }
 
 .contactOne .content #textTwo {
@@ -243,7 +243,7 @@
     padding-bottom: 5%;
     float: right;
     display: inline;
-    font-size: 20px;
+    font-size: 25px;
 }
 
 .contactTwo{
@@ -264,7 +264,8 @@
     padding-right: 2%;
     float: left;
     display: inline;
-    font-size: 130%;
+    font-size: 100%;
+    text-align: justify;
 }
 
 .contactTwo .textTwo{
@@ -278,3 +279,69 @@
     float: right;
     display: inline;
 }
+
+.backgroundWrap{
+    background-color: rgba(211, 211, 211, 0.576);
+    box-sizing: border-box;
+    margin: 10px 10px 10px;
+    padding: 20px;
+}
+
+.backgroundWrap header {
+    border-bottom: 3px solid black;
+    box-sizing: border-box;
+    display: flex;
+    margin: auto;
+    align-items: center;
+    width: 280px;
+}
+
+.backgroundWrap .wrap{
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+    margin-top: 40px;
+}
+
+.backgroundWrap .wrap .card{
+    width: 400px;
+    background-color: #fff;
+    text-align: center;
+    font-size: 19px;
+    float: left;
+    margin: 10px;
+    padding-bottom: 20px;
+    border-radius: 30px;
+}
+
+.backgroundWrap .wrap .card img{
+    width: 95%; 
+    padding-top: 20px;
+    padding-bottom: 5px;
+}
+
+.backgroundWrap .wrap .card p{
+    text-align: justify;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-weight: bold;
+}
+
+.backgroundWrap .text{
+    text-align: center; 
+    color: white; 
+    padding-top: 1%;
+    font-size: 300%;
+    font-weight: bold;
+}
+
+hr.style { 
+    border: 0;
+    height: 0;
+    opacity: 60%;
+    border-top: 2px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  }
