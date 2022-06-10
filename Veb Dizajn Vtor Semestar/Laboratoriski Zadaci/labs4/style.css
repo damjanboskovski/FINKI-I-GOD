@@ -1,23 +1,25 @@
-* 
-{
+* {
     font-family: 'Times New Roman', Times, serif;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-.containerOne li, a {
+.containerOne li, a 
+{
     font-weight: 500;
     font-size: 18px;
     color: rgb(124,124,124);
     text-decoration: none;
 }
 
-.containerOne {
+.containerOne 
+{
     margin: 10px 10px 10px;
 }
 
-.containerOne header {
+.containerOne header 
+{
     background-color: white;
     border-bottom: 1px solid gray;
     box-shadow: 0px 2px;
@@ -28,32 +30,39 @@
     padding: 5px 10% 20px;
 }
 
-.logo {
+.logo 
+{
     cursor: pointer;
 }
 
-.topBar {
+.topBar 
+{
     list-style: none;
 }
 
-.topBar li {
+.topBar li 
+{
     display: inline-block;
     padding: 0px 30px;
 }
 
-.topBar li a {
+.topBar li a 
+{
     transition: ease 0s;
 }
 
-.topBar li a:hover {
+.topBar li a:hover 
+{
     color: black;
 }
     
-.topBar li a:active {
+.topBar li a:active 
+{
     color: rgb(154, 239, 154);
 }
 
-.containerTwo {
+.containerTwo 
+{
     margin: 10px 10px 10px;
     background-color: #00008b;
     color: white;
@@ -67,18 +76,20 @@
     align-items: center;
 }
 
-.containerTwo .content {
+.containerTwo .content 
+{
     padding: 0% 10%;
     align-items: left;
     margin-right: 0;
 }
 
-.containerTwo .content b {
+.containerTwo .content b 
+{
     max-width: 500px;
 }
 
-
-.containerThree {
+.containerThree 
+{
     margin: 10px 10px 10px;
     background-color: #319c61;
     color: black;
@@ -91,12 +102,14 @@
     align-items: center;
 }
 
-.containerThree .content {
+.containerThree .content 
+{
     padding: 0% 10%;
     align-items: left;
 }
 
-.containerThree .content .imageOne img {
+.containerThree .content .imageOne img 
+{
     max-width: 28%;
     max-height: 28%;
     float: left;
@@ -104,7 +117,8 @@
     padding: 2% 2% 2%;
 }
 
-.containerThree .content .imageOne p {
+.containerThree .content .imageOne p 
+{
     padding: 3% 2% 2%;
     text-align: justify;
     font-size: 89%;
@@ -118,11 +132,13 @@
     align-items: center;
 }
 
-.containerThree .contentTwo {
+.containerThree .contentTwo 
+{
     padding: 0% 10%;
 }
 
-.containerThree .contentTwo .imageTwo img {
+.containerThree .contentTwo .imageTwo img 
+{
     max-width: 28%;
     max-height: 28%;
     float: right;
@@ -130,7 +146,8 @@
     padding: 1% 2% 2%;
 }
 
-.containerThree .contentTwo .imageTwo p {
+.containerThree .contentTwo .imageTwo p 
+{
     max-width: 72%;
     max-height: 75%;
     float: left;
@@ -140,18 +157,21 @@
     margin: auto;
 }
 
-.containerFour li, a {
+.containerFour li, a 
+{
     font-weight: 500;
     font-size: 18px;
     color: rgb(124,124,124);
     text-decoration: none;
 }
 
-.containerFour {
+.containerFour 
+{
     margin: 18px 10px 10px;
 }
 
-.containerFour header {
+.containerFour header 
+{
     background-color: white;
     border-top: 2px solid black;
     box-sizing: border-box;
@@ -161,25 +181,29 @@
     padding: 20px 10%;
 }
 
-.aboutUsContainerOne {
+.aboutUsContainerOne 
+{
     margin: 10px 10px 10px;
     background-color: #90ee90;
     color: white;
 }
 
-.aboutUsContainerOne .content {
+.aboutUsContainerOne .content 
+{
     box-sizing: border-box;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.aboutUsContainerOne .content #textOne {
+.aboutUsContainerOne .content #textOne 
+{
     padding: 10px 10%;
     float: left;
 }
 
-.aboutUsContainerOne .content #textTwo {
+.aboutUsContainerOne .content #textTwo 
+{
     padding: 10px;
     padding-right: 200px;
     padding-top: 10%;
@@ -189,25 +213,29 @@
     font-size: 20px;
 }
 
-.contactContainerOne{
+.contactContainerOne
+{
     margin: 10px 10px 10px;
     background-color: #90ee90;
     color: white;
 }
 
-.contactContainerOne .content{
+.contactContainerOne .content
+{
     box-sizing: border-box;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.aboutUsContainerOne .content #textOne{
+.aboutUsContainerOne .content #textOne
+{
     padding: 10px 10%;
     float: left;
 }
 
-.aboutUsContainerOne .content #textTwo{
+.aboutUsContainerOne .content #textTwo
+{
     padding: 10px;
     padding-right: 200px;
     padding-top: 10%;
@@ -217,26 +245,30 @@
     font-size: 20px;
 }
 
-.contactOne {
+.contactOne 
+{
     margin: 10px 10px 10px;
     background-color: #9ce89c;
     color: white;
 }
 
-.contactOne .content {
+.contactOne .content 
+{
     box-sizing: border-box;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.contactOne .content #textOne {
+.contactOne .content #textOne 
+{
     padding: 10px 10%;
     float: left;
     font-size: 40px;
 }
 
-.contactOne .content #textTwo {
+.contactOne .content #textTwo 
+{
     padding: 10px;
     padding-right: 200px;
     padding-top: 10%;
@@ -246,19 +278,22 @@
     font-size: 25px;
 }
 
-.contactTwo{
+.contactTwo
+{
     background-color: rgb(211, 211, 211);
     box-sizing: border-box;
     margin: 10px 10px 10px;
 }
 
-.contactTwo .content{
+.contactTwo .content
+{
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.contactTwo .content .text{
+.contactTwo .content .text
+{
     color: black;
     max-width: 50%;
     padding-right: 2%;
@@ -268,26 +303,30 @@
     text-align: justify;
 }
 
-.contactTwo .textTwo{
+.contactTwo .textTwo
+{
     text-align: right;
     padding-right: 11%;
     font-size: 120%;
 }
 
-.contactTwo .content #map{
+.contactTwo .content #map
+{
     padding-top: 1%;
     float: right;
     display: inline;
 }
 
-.backgroundWrap{
+.backgroundWrap
+{
     background-color: rgba(211, 211, 211, 0.576);
     box-sizing: border-box;
     margin: 10px 10px 10px;
     padding: 20px;
 }
 
-.backgroundWrap header {
+.backgroundWrap header 
+{
     border-bottom: 3px solid black;
     box-sizing: border-box;
     display: flex;
@@ -296,7 +335,8 @@
     width: 280px;
 }
 
-.backgroundWrap .wrap{
+.backgroundWrap .wrap
+{
     box-sizing: border-box;
     display: flex;
     justify-content: space-between;
@@ -305,7 +345,8 @@
     margin-top: 40px;
 }
 
-.backgroundWrap .wrap .card{
+.backgroundWrap .wrap .card
+{
     width: 400px;
     background-color: #fff;
     text-align: center;
@@ -316,13 +357,15 @@
     border-radius: 30px;
 }
 
-.backgroundWrap .wrap .card img{
+.backgroundWrap .wrap .card img
+{
     width: 95%; 
     padding-top: 20px;
     padding-bottom: 5px;
 }
 
-.backgroundWrap .wrap .card p{
+.backgroundWrap .wrap .card p
+{
     text-align: justify;
     padding-top: 20px;
     padding-left: 20px;
@@ -330,7 +373,8 @@
     font-weight: bold;
 }
 
-.backgroundWrap .text{
+.backgroundWrap .text
+{
     text-align: center; 
     color: white; 
     padding-top: 1%;
@@ -338,10 +382,11 @@
     font-weight: bold;
 }
 
-hr.style { 
+hr.style 
+{ 
     border: 0;
     height: 0;
     opacity: 60%;
     border-top: 2px solid rgba(0, 0, 0, 0.1);
     border-bottom: 2px solid rgba(255, 255, 255, 0.3);
-  }
+}
