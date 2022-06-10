@@ -2,27 +2,18 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2rem;
-
-    background-color: var(--background-color);
-    color: var(--table-text);
-
+    gap: 20px;
+    background-color: rgb(125, 223, 150);;
     height: 100%;
-    padding: 3rem;
-}
-
-#container-title-text{
-    color: var(--contact-form-text);
+    padding: 6%;
 }
 
 .content{
     background: rgb(237, 237, 237);
-
     border-radius: 10px;
-
     margin-left: auto;
     margin-right: auto;
-    padding: 1rem;
+    padding: 2%;
     width: 100%;
 }
 

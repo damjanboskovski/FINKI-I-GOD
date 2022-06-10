@@ -2,17 +2,13 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-
-    background-color: var(--background-color);
-    color: var(--table-text);
-
+    background-color: rgb(125, 223, 150);
     height: 100vh;
     padding-top: 2rem;
 }
 
 table{
     width: 90%;
-
     margin-top: 50px;
     margin-right: auto;
     margin-left: auto;
@@ -35,8 +31,4 @@ h3{
     text-align: center;
 
     padding: 20px;
-}
-
-#link{
-    color: var(--link-color);
 }
