@@ -1,0 +1,113 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    background-color: #8c6949;
+    justify-content: center;
+    background-position-x: center;
+}
+
+#search_bar_wrapper{
+    display: flex;
+    background: url(../image/search.jpg) no-repeat;
+    background-position-x: center;
+    justify-content: center;
+    height: 50px;
+}
+
+#banner_bar_wrapper{
+    background: url(../image/banner.jpg) no-repeat;
+    background-position-x: center;
+    padding-top: 160px;
+}
+
+#menu_wrapper{
+    background: url(../image/menu.jpg)no-repeat;
+    height: 60px;
+    padding-top: 20px;
+    background-position-x: center;
+}
+
+input{
+    background: transparent;
+    border: 0;
+    width: 114px;
+    color: white;
+    font-weight: 14px;
+}
+
+#menu_wrapper #menu{
+    display: flex;
+    justify-content: center;
+}
+
+#menu ul{
+    padding-right: 140px;
+    list-style: none;
+    display: flex;
+    
+}
+
+#menu ul a{
+    text-decoration: none;
+    color: white;
+}
+
+#menu ul li:first-of-type a{
+    border-bottom: 1px dashed white;
+}
+
+#menu ul li{
+    border-right: 1px solid white;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+#menu ul li:last-of-type{
+    border: 0px;
+}
+
+#content_wrapper{
+    background: url(../image/content_bg.jpg) repeat-y;
+    justify-content: center;
+    width: 980px;
+    margin: auto;
+}
+
+#content_wrapper #content h1{
+    color: rgb(252, 246, 131);
+    text-align: center;
+}
+
+#content_wrapper #content p{
+    text-align: center;
+    padding: 0px 100px;
+    padding-top: 10px;
+    color: rgb(231, 217, 191);
+}
+
+.section_w450{
+    display: flex;
+    flex-direction: column;
+}
+
+.section_w450 h2{
+    color: rgb(252, 246, 131);
+    padding-top: 20px;
+    padding-left: 100px;
+}
+
+.section_w450{
+    background: url(../image/header_bg.png) no-repeat;
+    background-position-x: 20px;
+}
+
+.section_w450 .section_content{
+    background: url(../image/image_01.jpg)no-repeat;
+}
