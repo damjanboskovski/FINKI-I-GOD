@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 
-int brojac(int num){int br=0; while(num){br++;num/=10;}return br;}
+int brojac(int num){int br=0; while(num){br++;num/=10;} return br;}
 
 
 int main(){
