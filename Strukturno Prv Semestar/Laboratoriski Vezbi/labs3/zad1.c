@@ -1,19 +1,17 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
 
-int brojac(int num){int br=0; while(num){br++;num/=10;} return br;}
+int main()
+{
+    int number, sum=0, mult=1; scanf("%d", &number); int digits = ((number==0)?1:log10(number)+1);
 
+    if(digits != 7){ printf("Vneseniot broj ne e 7 cifren!"); return 0; }
 
-int main(){
-    int num,sum=0,mult=1,prev=0,br=0; scanf("%d",&num);
+    while(digits){ int digit = number / (int)pow(10,digits-1) % 10; printf("%d\n",digit);
+    digits--; sum+=digit; mult*=digit; }
 
-    if(brojac(num) != 7){printf("Vneseniot broj ne e 7 cifren!");return 0;}
-    
-    while(num){ prev=prev*10 + (num%10); num/=10;}
-    while(prev){ br=prev%10;prev/=10; printf("%d\n",br);
-    sum+=br;mult*=br;}
-    printf("%d\n%d\n",sum,mult);
-    
+    printf("%d\n%d\n", sum, mult);
 
     return 0;
 }

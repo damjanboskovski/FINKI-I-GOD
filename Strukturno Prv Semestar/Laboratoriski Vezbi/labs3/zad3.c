@@ -1,24 +1,19 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
 
-int brojac(int num){int br1=0; while(num){br1++;num/=10;}return br1;}
+int main()
+{
+    int number_1, number_2=0, cnt=0; scanf("%d", &number_1);
+    int digits = ((number_1==0)?1:log10(number_1)+1);
 
-int main(){
-    int num,num2=0,br2=0; scanf("%d",&num);
-    int br = ((num==0)?1:log10(num)+1);
+    while(digits){ int digit = number_1 / (int)pow(10,digits-1) % 10;
+    if(digit==5){ cnt++; digit+=1; } number_2 = number_2 * 10 + digit; digits--; }
 
-    while(br){ int broj = num / (int)pow(10,br-1) % 10;
-    if(broj==5){br2++; broj+=1;}
-    num2=num2*10+broj; broj--;
-    }   
+    if(cnt<2){ printf("Error"); return 0; }
 
-    if(br2<2){printf("Error"); return 0;}
+    int tmp=number_1; if(number_1<number_2){ number_1 = number_2; number_2 = tmp; }
+    printf("%.04lf%%",  ((number_1 - number_2) / (float)tmp) * 100 );
 
-    int temp=num;if(num<num2){num=num2; num2=temp;}
-    printf("%.04lf%%",((num-num2)/(float)temp)*100);
-    
-    
     return 0;
-    }
-
-    
+}
