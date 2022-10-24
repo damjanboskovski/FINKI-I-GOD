@@ -11,8 +11,8 @@ int counter(int num){
 }
 
 int main(){
-    int num; scanf("%d",&num); num--;
-    while(num<9){printf("Brojot ne e validen"); return 0;}
-    while(flipNum(num,0) % counter(num) != 0){ num--; }
-    printf("%d", num); return 0;
+    int n; scanf("%d", &n); n--;
+    while(n<9){ printf("Brojot ne e validen"); return 0; }
+    while(flipNum(n,0) % counter(n) != 0){ n--; }
+    printf("%d",n); return 0;
 }

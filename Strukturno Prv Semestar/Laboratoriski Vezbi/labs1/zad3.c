@@ -1,9 +1,8 @@
 #include <stdio.h>
+
 int main(){
-    float mass,height; scanf("%f %f",&mass, &height);
-    float height_cm = height / 100;
-    float bmi = mass/(height_cm*height_cm);
-    printf("%.2f",bmi);
-    
+    float mass, height, heightConv;
+    scanf("%f %f",&mass, &height); heightConv = height / 100;
+    printf("%.2f",mass / (heightConv * heightConv));
     return 0;
     }
