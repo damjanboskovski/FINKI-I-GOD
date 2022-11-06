@@ -1,27 +1,17 @@
 #include <stdio.h>
-#include <stdlib.h>
 
-int main()
-{
-    int number, is_int=1, maximum=0, sum=0;
+int main(){
+    int isNum=1, num, max=0;
 
-    while(is_int == 1)
-    {
-        sum=0; sum += maximum;
-
-        is_int = scanf("%d", &number);
-
-        int temp_number = number; maximum = 0;
-
-        while(temp_number)
-        {
-            if(temp_number % 10 > maximum){ maximum = temp_number%10; }
-
-            sum+=temp_number%10; temp_number/=10;
+    while (isNum == 1) {
+        int sum=0; sum += max;
+        isNum = scanf("%d", &num); int temp = num; max=0;
+        while(temp){
+            temp%10 > max ? max = temp%10:0;
+            sum += temp%10; temp/=10;
         }
-
-        if(is_int == 1){ printf("%d: %d \n", number, sum); }
+        if(isNum == 1){ printf("%d: %d \n", num, sum); }
     }
-
+    
     return 0;
 }

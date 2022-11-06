@@ -1,23 +1,15 @@
-#include<stdio.h>
+#include <stdio.h>
 
 int main(){
-    int num1,num2,i = 1,temp;
-    scanf("%d",&num1); scanf("%d",&num2);
+    int num1, num2, temp = 0, i = 1; scanf("%d %d", &num1, &num2);
+    if( num1<=0 || num2<=0 ){ printf("Invalid input"); return 0; }
 
-    if(num1 <= 0 || num2 <= 0){printf("Invalid input"); return 0;}
-
-    if(num2>num1){temp=num1;num1=num2;num2=temp;}
+    num2>num1 ? temp=num1, num1=num2, num2=temp : 0;
     while(num2){
-        if(i%2==0){
-            if(num1%10 != num2%10){
-                printf("NE");
-                return 0;
-            }
+        if(i % 2 == 0){ 
+            if(num1%10 != num2%10){ printf("NE"); return 0; }
             num2/=10;
-        }
-        num1/=10;
-        i++;
+        } num1/=10; i++;
     }
-    printf("PAREN");
-    return 0;
+    printf("PAREN"); return 0;
 }

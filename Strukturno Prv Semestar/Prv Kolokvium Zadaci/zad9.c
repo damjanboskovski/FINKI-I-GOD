@@ -1,32 +1,15 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include<ctype.h>
-int sum=0;
+#include <ctype.h>
 
-int main()
-{
-    char character;
-
-    while (character != '.')
-    {
-        scanf("%c", &character);
-
-        character=toupper(character);
-
-        if(((int)character - '0') > 0 && !isdigit(character)){
-            sum+=((int)character - '0') - 7; }
-
-        if(isdigit(character)) { sum+=character - '0'; }
+int main(){
+    char c; int sum=0;
+    while (c != '.') {
+        scanf("%c", &c); c = toupper(c);
+        ((int)c - '0') > 0 && !isdigit(c) ? sum += (int)c - '0' - 7:0;
+        isdigit(c) ? sum += c - '0':0;
     }
-
-    if(sum % 16 == 0)
-    {
-        if(sum%10 == 6 && (sum/10)%10 == 1) {
-            printf("Poln pogodok"); }
-
-        else printf("Pogodok");
-    }
-    else printf("%d", sum);
-
+    sum%16==0 ? (sum%10==6 && (sum/10)%10==1 ? printf("Poln pogodok") : printf("Pogodok")) : printf("%d", sum);
+ 
     return 0;
 }
+
