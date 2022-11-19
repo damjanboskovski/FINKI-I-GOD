@@ -8,9 +8,7 @@ int softNumCheck(int n){
 
 int main(){
     int n, m; scanf("%d%d", &n, &m); int min=m,cnt = 0;
-    for(int i=n; i<m; i++){ 
-        cnt++; softNumCheck(i) != 1 && i < min ? min = i:0; 
-    }
+    for(int i=n; i<m; i++){ cnt++; softNumCheck(i) != 1 && i < min ? min = i:0; }
     min !=m || cnt == 1 ? printf("%d",min) : printf("NE");
     return 0;
 }
