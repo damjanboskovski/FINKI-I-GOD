@@ -1,26 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int checker(int num_1, int temp_num_1, int num_2, int temp_num_2, int counter)
-{
-    if (num_1 == 0) {
-        if (counter!=0){ return 1+(temp_num_1-counter); }
-        else return temp_num_1-counter; }
-
-    if (num_2 == 0) {
-        return checker (num_1/10,temp_num_1,temp_num_2,temp_num_2,counter); }
-
-    if (num_1%10 == num_2%10) {
-        return checker(temp_num_1-counter,temp_num_1,temp_num_2,temp_num_2,counter+1); }
-
-    else return checker(num_1,temp_num_1,num_2/10,temp_num_2,counter);
-}
-
 int main()
 {
-    int num_1, num_2;
-    scanf("%d", &num_1); scanf("%d", &num_2);
-    printf("%d", checker(num_1-1,num_1-1,num_2,num_2,0));
+    long long int n, x; scanf("%lld %lld", &n,&x); int min = n+1;
 
-    return 0;
+    for(int i=n-1; i>=0; i--){
+        long long int tempNum = x; int flag=0;
+        while(tempNum){
+            long long int tempCurr = i;
+            while(tempCurr){
+                if(tempNum%10 == tempCurr%10){ flag = 1; break; }
+                tempCurr/=10;
+            } tempNum/=10;  if(flag == 1){ break; }
+        } if(flag==0){ min=i; break; }
+    }
+
+    printf("%d", min); return 0;
 }
